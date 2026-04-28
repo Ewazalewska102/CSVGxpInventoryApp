@@ -1,23 +1,48 @@
-﻿namespace CSVGxpInventoryApp;
+﻿using CSVGxpInventoryApp.Models;
+using CSVGxpInventoryApp.Services;
+
+namespace CSVGxpInventoryApp;
 
 public partial class MainPage : ContentPage
 {
-    int count = 0;
+    private readonly DatabaseService _databaseService;
 
-    public MainPage()
+    public MainPage(DatabaseService databaseService)
     {
         InitializeComponent();
+        _databaseService = databaseService;
     }
 
-    private void OnCounterClicked(object sender, EventArgs e)
+    protected override async void OnAppearing()
     {
-        count++;
+        base.OnAppearing();
 
-        if (count == 1)
-            CounterBtn.Text = $"Clicked {count} time";
-        else
-            CounterBtn.Text = $"Clicked {count} times";
+        var systems = await _databaseService.GetSystemsAsync();
 
-        SemanticScreenReader.Announce(CounterBtn.Text);
+        // Only insert sample data if database is empty
+        if (systems.Count == 0)
+        {
+            var department = new Department
+            {
+                Name = "Quality Assurance"
+            };
+
+            await _databaseService.AddDepartmentAsync(department);
+
+            var system = new SystemEntity
+            {
+                SystemName = "TrackWise",
+                DepartmentId = 1,
+                Owner = "QA Manager",
+                Vendor = "Sparta Systems",
+                ValidationStatus = "Validated"
+            };
+
+            await _databaseService.AddSystemAsync(system);
+
+            systems = await _databaseService.GetSystemsAsync();
+        }
+
+        MainLabel.Text = $"Systems in DB: {systems.Count}";
     }
 }

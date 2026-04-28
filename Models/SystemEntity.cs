@@ -1,6 +1,4 @@
-﻿namespace CSVGxpInventoryApp.Models;
-
-public class System
+﻿public class SystemEntity
 {
     public int SystemId { get; set; }
 
