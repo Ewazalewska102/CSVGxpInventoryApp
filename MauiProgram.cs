@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using CSVGxpInventoryApp.Services;
+using CSVGxpInventoryApp.Repositories;
 
 namespace CSVGxpInventoryApp
 {
@@ -17,8 +18,8 @@ namespace CSVGxpInventoryApp
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
-            // 🔹 Register DatabaseService (VERY IMPORTANT)
             builder.Services.AddSingleton<DatabaseService>();
+            builder.Services.AddSingleton<SystemRepository>();
 
 #if DEBUG
             builder.Logging.AddDebug();
