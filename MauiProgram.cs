@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using CSVGxpInventoryApp.Services;
 
 namespace CSVGxpInventoryApp
 {
@@ -7,6 +8,7 @@ namespace CSVGxpInventoryApp
         public static MauiApp CreateMauiApp()
         {
             var builder = MauiApp.CreateBuilder();
+
             builder
                 .UseMauiApp<App>()
                 .ConfigureFonts(fonts =>
@@ -15,8 +17,11 @@ namespace CSVGxpInventoryApp
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
+            // 🔹 Register DatabaseService (VERY IMPORTANT)
+            builder.Services.AddSingleton<DatabaseService>();
+
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();
