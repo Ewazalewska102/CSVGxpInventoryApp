@@ -1,6 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using CSVGxpInventoryApp.Repositories;
 using CSVGxpInventoryApp.Services;
-using CSVGxpInventoryApp.Repositories;
+using CSVGxpInventoryApp.ViewModels;
+using Microsoft.Extensions.Logging;
 
 namespace CSVGxpInventoryApp
 {
@@ -20,6 +21,8 @@ namespace CSVGxpInventoryApp
 
             builder.Services.AddSingleton<DatabaseService>();
             builder.Services.AddSingleton<SystemRepository>();
+            builder.Services.AddSingleton<SystemViewModel>();
+            builder.Services.AddSingleton<MainPage>();
 
 #if DEBUG
             builder.Logging.AddDebug();
