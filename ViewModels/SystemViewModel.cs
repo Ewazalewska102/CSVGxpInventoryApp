@@ -43,7 +43,8 @@ public class SystemViewModel : INotifyPropertyChanged
         "Not Validated"
     };
 
-    // DASHBOARD COUNTS
+    public SystemEntity? SelectedSystem { get; set; }
+
     public int TotalSystems => Systems.Count;
     public int GxpRelevantSystems => Systems.Count(s => s.IsGxpRelevant == "Yes");
     public int ValidatedSystems => Systems.Count(s => s.ValidationStatus.Equals("Validated", StringComparison.OrdinalIgnoreCase));
@@ -51,7 +52,6 @@ public class SystemViewModel : INotifyPropertyChanged
     public int NotValidatedSystems => Systems.Count(s => s.ValidationStatus.Equals("Not Validated", StringComparison.OrdinalIgnoreCase));
     public int ObsoleteSystemsCount => ObsoleteSystems.Count;
 
-    // FORM FIELDS
     private string _systemCode = string.Empty;
     public string SystemCode
     {

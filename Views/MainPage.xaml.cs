@@ -28,6 +28,16 @@ public partial class MainPage : ContentPage
         await Shell.Current.GoToAsync(nameof(AddSystemPage));
     }
 
+    private async void OnEditClicked(object sender, EventArgs e)
+    {
+        if (sender is Button button && button.BindingContext is SystemEntity selectedSystem)
+        {
+            _viewModel.SelectedSystem = selectedSystem;
+
+            await Shell.Current.GoToAsync(nameof(EditSystemPage));
+        }
+    }
+
     private async void OnMarkAsObsoleteClicked(object sender, EventArgs e)
     {
         if (sender is Button button && button.BindingContext is SystemEntity selectedSystem)

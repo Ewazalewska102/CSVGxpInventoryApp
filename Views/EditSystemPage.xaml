@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CSVGxpInventoryApp.Views.EditSystemPage"
+             Title="Edit System"
+             BackgroundColor="#EEF2F7">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="18">
+
+            <Label Text="Edit System Record"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   TextColor="#1E293B" />
+
+            <Border StrokeThickness="1"
+                    Stroke="#D8DEE9"
+                    BackgroundColor="#FFFFFF"
+                    StrokeShape="RoundRectangle 16"
+                    Padding="18">
+
+                <VerticalStackLayout Spacing="14">
+
+                    <Label Text="System Name" FontAttributes="Bold"/>
+                    <Entry Text="{Binding SelectedSystem.SystemName}" />
+
+                    <Label Text="Owner" FontAttributes="Bold"/>
+                    <Entry Text="{Binding SelectedSystem.Owner}" />
+
+                    <Label Text="Vendor" FontAttributes="Bold"/>
+                    <Entry Text="{Binding SelectedSystem.Vendor}" />
+
+                    <Label Text="Software Version" FontAttributes="Bold"/>
+                    <Entry Text="{Binding SelectedSystem.SoftwareVersion}" />
+
+                    <Label Text="Validation Status" FontAttributes="Bold"/>
+                    <Picker ItemsSource="{Binding ValidationStatuses}"
+                            SelectedItem="{Binding SelectedSystem.ValidationStatus}" />
+
+                    <Button Text="Save Changes"
+                            BackgroundColor="#A78BFA"
+                            TextColor="White"
+                            CornerRadius="12"
+                            Clicked="OnSaveClicked"/>
+
+                </VerticalStackLayout>
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
