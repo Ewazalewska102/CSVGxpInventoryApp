@@ -12,6 +12,7 @@ on:
 
 jobs:
   build:
+    name: Build MAUI (Windows Only)
     runs-on: windows-latest
 
     steps:
@@ -21,13 +22,13 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '9.0.x'
+          dotnet-version: '8.0.x'
 
-      - name: Install MAUI
+      - name: Install MAUI workload
         run: dotnet workload install maui
 
-      - name: Restore
+      - name: Restore dependencies
         run: dotnet restore
 
-      - name: Build
-        run: dotnet build --configuration Release --no-restore
+      - name: Build (Windows only)
+        run: dotnet build -f net8.0-windows10.0.19041.0 --configuration Release --no-restore
