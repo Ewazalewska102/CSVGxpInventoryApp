@@ -28,7 +28,7 @@ jobs:
         run: dotnet workload install maui
 
       - name: Restore Windows target
-        run: dotnet restore CSVGxpInventoryApp.csproj -f net10.0-windows10.0.19041.0 -r win-x64
+        run: dotnet restore CSVGxpInventoryApp.csproj -p:TargetFramework=net10.0-windows10.0.19041.0 -r win-x64
 
       - name: Build Windows target
         run: dotnet build CSVGxpInventoryApp.csproj -f net10.0-windows10.0.19041.0 -r win-x64 -c Release --no-restore -p:WindowsPackageType=None
