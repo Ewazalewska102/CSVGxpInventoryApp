@@ -248,6 +248,14 @@
                                         HeightRequest="44"
                                         Clicked="OnMarkAsObsoleteClicked" />
 
+                                <Button Text="Edit"
+                                        BackgroundColor="#93C5FD"
+                                        TextColor="#1E3A8A"
+                                        FontAttributes="Bold"
+                                        CornerRadius="12"
+                                        HeightRequest="44"
+                                        Clicked="OnEditClicked"/>
+
                             </VerticalStackLayout>
 
                         </Border>

@@ -9,6 +9,7 @@ namespace CSVGxpInventoryApp
             InitializeComponent();
 
             Routing.RegisterRoute(nameof(AddSystemPage), typeof(AddSystemPage));
+            Routing.RegisterRoute(nameof(EditSystemPage), typeof(EditSystemPage));
         }
     }
 }
