@@ -21,4 +21,19 @@ public class SystemRepository
     {
         return await _databaseService.GetSystemsAsync();
     }
+
+    public async Task<List<SystemEntity>> GetObsoleteSystemsAsync()
+    {
+        return await _databaseService.GetObsoleteSystemsAsync();
+    }
+
+    public async Task<int> UpdateSystemAsync(SystemEntity system)
+    {
+        return await _databaseService.UpdateSystemAsync(system);
+    }
+
+    public async Task<int> MarkAsObsoleteAsync(SystemEntity system)
+    {
+        return await _databaseService.MarkAsObsoleteAsync(system);
+    }
 }

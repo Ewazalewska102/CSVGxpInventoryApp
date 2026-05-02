@@ -21,24 +21,61 @@ public class DatabaseService
         await _database.CreateTableAsync<Department>();
     }
 
-    //INSERT System
+    // INSERT System
     public async Task<int> AddSystemAsync(SystemEntity system)
     {
         await Init();
+
+        system.IsObsolete = false;
+
         return await _database!.InsertAsync(system);
     }
 
-    // GET all Systems
+    // GET active systems only
     public async Task<List<SystemEntity>> GetSystemsAsync()
     {
         await Init();
-        return await _database!.Table<SystemEntity>().ToListAsync();
+
+        return await _database!
+            .Table<SystemEntity>()
+            .Where(s => !s.IsObsolete)
+            .ToListAsync();
+    }
+
+    // GET obsolete systems only
+    public async Task<List<SystemEntity>> GetObsoleteSystemsAsync()
+    {
+        await Init();
+
+        return await _database!
+            .Table<SystemEntity>()
+            .Where(s => s.IsObsolete)
+            .ToListAsync();
+    }
+
+    // UPDATE System
+    public async Task<int> UpdateSystemAsync(SystemEntity system)
+    {
+        await Init();
+
+        return await _database!.UpdateAsync(system);
+    }
+
+    // MARK System as obsolete
+    public async Task<int> MarkAsObsoleteAsync(SystemEntity system)
+    {
+        await Init();
+
+        system.IsObsolete = true;
+
+        return await _database!.UpdateAsync(system);
     }
 
     // INSERT Department
     public async Task<int> AddDepartmentAsync(Department department)
     {
         await Init();
+
         return await _database!.InsertAsync(department);
     }
 
@@ -46,6 +83,7 @@ public class DatabaseService
     public async Task<List<Department>> GetDepartmentsAsync()
     {
         await Init();
+
         return await _database!.Table<Department>().ToListAsync();
     }
 }
