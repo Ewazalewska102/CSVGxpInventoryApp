@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CSVGxpInventoryApp.Views.AddSystemPage"
+             Title="Add System">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="18">
+
+            <Label Text="Add System Record"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" />
+
+            <Label Text="Enter the computerised system details below."
+                   FontSize="14"
+                   TextColor="Gray"
+                   HorizontalTextAlignment="Center" />
+
+            <Border StrokeThickness="1"
+                    Padding="18"
+                    Margin="0,10,0,0">
+
+                <VerticalStackLayout Spacing="14">
+
+                    <Label Text="System ID" FontAttributes="Bold" />
+                    <Entry Text="{Binding SystemCode}"
+                           Placeholder="e.g. LAB-UV-001" />
+
+                    <Label Text="System Name" FontAttributes="Bold" />
+                    <Entry Text="{Binding SystemName}"
+                           Placeholder="e.g. Empower, Polarimeter, LabSolutions" />
+
+                    <Label Text="Department" FontAttributes="Bold" />
+                    <Picker Title="Select department"
+                            ItemsSource="{Binding Departments}"
+                            SelectedItem="{Binding SelectedDepartment}" />
+
+                    <Label Text="System Owner" FontAttributes="Bold" />
+                    <Entry Text="{Binding Owner}"
+                           Placeholder="e.g. QC Manager" />
+
+                    <Label Text="Vendor" FontAttributes="Bold" />
+                    <Entry Text="{Binding Vendor}"
+                           Placeholder="e.g. Waters, Hanleys, Shimadzu" />
+
+                    <Label Text="Software Version" FontAttributes="Bold" />
+                    <Entry Text="{Binding SoftwareVersion}"
+                           Placeholder="e.g. v1.0, LabSolutions 6.111" />
+
+                    <Label Text="GAMP 5 Category" FontAttributes="Bold" />
+                    <Picker Title="Select GAMP 5 category"
+                            ItemsSource="{Binding GampCategories}"
+                            SelectedItem="{Binding SelectedGampCategory}" />
+
+                    <Label Text="GxP Relevant?" FontAttributes="Bold" />
+                    <Picker Title="Select Yes or No"
+                            ItemsSource="{Binding GxpOptions}"
+                            SelectedItem="{Binding SelectedGxpOption}" />
+
+                    <Label Text="Validation Status" FontAttributes="Bold" />
+                    <Entry Text="{Binding ValidationStatus}"
+                           Placeholder="e.g. Validated, In Progress, Not Validated" />
+
+                    <Button Text="Save System"
+                            FontAttributes="Bold"
+                            HeightRequest="48"
+                            Clicked="OnSaveSystemClicked" />
+
+                    <Button Text="Back to Inventory"
+                            HeightRequest="44"
+                            Clicked="OnBackClicked" />
+
+                </VerticalStackLayout>
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
