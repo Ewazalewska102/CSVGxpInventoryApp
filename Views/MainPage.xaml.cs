@@ -1,4 +1,5 @@
 ﻿using CSVGxpInventoryApp.ViewModels;
+using CSVGxpInventoryApp.Views;
 
 namespace CSVGxpInventoryApp;
 
@@ -19,5 +20,10 @@ public partial class MainPage : ContentPage
         base.OnAppearing();
 
         await _viewModel.LoadSystemsAsync();
+    }
+
+    private async void OnAddSystemClicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync(nameof(AddSystemPage));
     }
 }

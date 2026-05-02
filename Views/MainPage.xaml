@@ -2,40 +2,127 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CSVGxpInventoryApp.MainPage"
-             Title="System Inventory">
+             Title="System Inventory"
+             BackgroundColor="#EEF2F7">
 
-    <VerticalStackLayout Padding="20" Spacing="15">
+    <ScrollView>
+        <VerticalStackLayout Padding="22" Spacing="18">
 
-        <Label Text="GxP System Inventory"
-               FontSize="26"
-               FontAttributes="Bold"
-               HorizontalOptions="Center" />
+            <Label Text="GxP System Inventory"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   TextColor="#1E293B" />
 
-        <CollectionView ItemsSource="{Binding Systems}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Border StrokeThickness="1"
-                            Padding="12"
-                            Margin="0,5">
-                        <VerticalStackLayout Spacing="4">
-                            <Label Text="{Binding SystemName}"
-                                   FontSize="18"
-                                   FontAttributes="Bold" />
+            <Label Text="Computerised system records and compliance classification"
+                   FontSize="14"
+                   HorizontalOptions="Center"
+                   TextColor="#64748B" />
 
-                            <Label Text="{Binding Owner}"
-                                   FontSize="14" />
+            <Button Text="Add New System"
+                    FontAttributes="Bold"
+                    HeightRequest="50"
+                    BackgroundColor="#A78BFA"
+                    TextColor="White"
+                    CornerRadius="14"
+                    Clicked="OnAddSystemClicked" />
 
-                            <Label Text="{Binding Vendor}"
-                                   FontSize="14" />
+            <CollectionView ItemsSource="{Binding Systems}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
 
-                            <Label Text="{Binding ValidationStatus}"
-                                   FontSize="14" />
-                        </VerticalStackLayout>
-                    </Border>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                        <Border StrokeThickness="1"
+                                Stroke="#D8DEE9"
+                                Padding="18"
+                                Margin="0,8"
+                                BackgroundColor="#FFFFFF"
+                                StrokeShape="RoundRectangle 16">
 
-    </VerticalStackLayout>
+                            <VerticalStackLayout Spacing="10"
+                                BackgroundColor="#F1F5F9"
+                                Padding="14"
+                                >
+
+                                <Label Text="{Binding SystemName}"
+                                       FontSize="20"
+                                       FontAttributes="Bold"
+                                       TextColor="#111827" />
+
+                                <Grid ColumnDefinitions="160,*"
+                                        RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+                                        RowSpacing="8"
+                                        ColumnSpacing="10">
+
+                                    <Label Grid.Row="0" Grid.Column="0"
+                                           Text="System ID:"
+                                           FontAttributes="Bold"
+                                           TextColor="#475569" />
+                                    <Label Grid.Row="0" Grid.Column="1"
+                                           Text="{Binding SystemCode}"
+                                           TextColor="#334155" />
+
+                                    <Label Grid.Row="1" Grid.Column="0"
+                                           Text="System Owner:"
+                                           FontAttributes="Bold"
+                                           TextColor="#475569" />
+                                    <Label Grid.Row="1" Grid.Column="1"
+                                           Text="{Binding Owner}"
+                                           TextColor="#334155" />
+
+                                    <Label Grid.Row="2" Grid.Column="0"
+                                           Text="Vendor:"
+                                           FontAttributes="Bold"
+                                           TextColor="#475569" />
+                                    <Label Grid.Row="2" Grid.Column="1"
+                                           Text="{Binding Vendor}"
+                                           TextColor="#334155" />
+
+                                    <Label Grid.Row="3" Grid.Column="0"
+                                           Text="Software Version:"
+                                           FontAttributes="Bold"
+                                           TextColor="#475569" />
+                                    <Label Grid.Row="3" Grid.Column="1"
+                                           Text="{Binding SoftwareVersion}"
+                                           TextColor="#334155" />
+
+                                    <Label Grid.Row="4" Grid.Column="0"
+                                           Text="GAMP 5 Category:"
+                                           FontAttributes="Bold"
+                                           TextColor="#475569" />
+                                    <Label Grid.Row="4" Grid.Column="1"
+                                           Text="{Binding GampCategory}"
+                                           TextColor="#6D28D9"
+                                           FontAttributes="Bold" />
+
+                                    <Label Grid.Row="5" Grid.Column="0"
+                                           Text="GxP Relevant:"
+                                           FontAttributes="Bold"
+                                           TextColor="#475569" />
+                                    <Label Grid.Row="5" Grid.Column="1"
+                                           Text="{Binding IsGxpRelevant}"
+                                           TextColor="#047857"
+                                           FontAttributes="Bold" />
+
+                                    <Label Grid.Row="6" Grid.Column="0"
+                                           Text="Validation Status:"
+                                           FontAttributes="Bold"
+                                           TextColor="#475569" />
+                                    <Label Grid.Row="6" Grid.Column="1"
+                                           Text="{Binding ValidationStatus}"
+                                           TextColor="#2563EB"
+                                           FontAttributes="Bold" />
+
+                                </Grid>
+
+                            </VerticalStackLayout>
+
+                        </Border>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
 
 </ContentPage>
