@@ -19,6 +19,109 @@
                    HorizontalOptions="Center"
                    TextColor="#64748B" />
 
+            <Label Text="Dashboard Overview"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   TextColor="#1E293B"
+                   Margin="0,10,0,0" />
+
+            <Grid ColumnDefinitions="*,*"
+                  RowDefinitions="Auto,Auto,Auto"
+                  ColumnSpacing="12"
+                  RowSpacing="12">
+
+                <Border Grid.Row="0"
+                        Grid.Column="0"
+                        StrokeThickness="0"
+                        BackgroundColor="#DBEAFE"
+                        Padding="16"
+                        StrokeShape="RoundRectangle 18">
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Total Systems"
+                               FontSize="14"
+                               FontAttributes="Bold"
+                               TextColor="#1E3A8A" />
+                        <Label Text="{Binding TotalSystems}"
+                               FontSize="30"
+                               FontAttributes="Bold"
+                               TextColor="#1E3A8A" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Grid.Row="0"
+                        Grid.Column="1"
+                        StrokeThickness="0"
+                        BackgroundColor="#D1FAE5"
+                        Padding="16"
+                        StrokeShape="RoundRectangle 18">
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="GxP Relevant"
+                               FontSize="14"
+                               FontAttributes="Bold"
+                               TextColor="#065F46" />
+                        <Label Text="{Binding GxpRelevantSystems}"
+                               FontSize="30"
+                               FontAttributes="Bold"
+                               TextColor="#065F46" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Grid.Row="1"
+                        Grid.Column="0"
+                        StrokeThickness="0"
+                        BackgroundColor="#EDE9FE"
+                        Padding="16"
+                        StrokeShape="RoundRectangle 18">
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Validated"
+                               FontSize="14"
+                               FontAttributes="Bold"
+                               TextColor="#5B21B6" />
+                        <Label Text="{Binding ValidatedSystems}"
+                               FontSize="30"
+                               FontAttributes="Bold"
+                               TextColor="#5B21B6" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Grid.Row="1"
+                        Grid.Column="1"
+                        StrokeThickness="0"
+                        BackgroundColor="#FEF3C7"
+                        Padding="16"
+                        StrokeShape="RoundRectangle 18">
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="In Progress"
+                               FontSize="14"
+                               FontAttributes="Bold"
+                               TextColor="#92400E" />
+                        <Label Text="{Binding InProgressSystems}"
+                               FontSize="30"
+                               FontAttributes="Bold"
+                               TextColor="#92400E" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Grid.Row="2"
+                        Grid.ColumnSpan="2"
+                        StrokeThickness="0"
+                        BackgroundColor="#FCE7F3"
+                        Padding="16"
+                        StrokeShape="RoundRectangle 18">
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Not Validated"
+                               FontSize="14"
+                               FontAttributes="Bold"
+                               TextColor="#9D174D" />
+                        <Label Text="{Binding NotValidatedSystems}"
+                               FontSize="30"
+                               FontAttributes="Bold"
+                               TextColor="#9D174D" />
+                    </VerticalStackLayout>
+                </Border>
+
+            </Grid>
+
             <Button Text="Add New System"
                     FontAttributes="Bold"
                     HeightRequest="50"
@@ -26,6 +129,12 @@
                     TextColor="White"
                     CornerRadius="14"
                     Clicked="OnAddSystemClicked" />
+
+            <Label Text="System Inventory List"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   TextColor="#1E293B"
+                   Margin="0,8,0,0" />
 
             <CollectionView ItemsSource="{Binding Systems}">
                 <CollectionView.ItemTemplate>
@@ -39,9 +148,8 @@
                                 StrokeShape="RoundRectangle 16">
 
                             <VerticalStackLayout Spacing="10"
-                                BackgroundColor="#F1F5F9"
-                                Padding="14"
-                                >
+                                                 BackgroundColor="#F1F5F9"
+                                                 Padding="14">
 
                                 <Label Text="{Binding SystemName}"
                                        FontSize="20"
@@ -49,9 +157,9 @@
                                        TextColor="#111827" />
 
                                 <Grid ColumnDefinitions="160,*"
-                                        RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto"
-                                        RowSpacing="8"
-                                        ColumnSpacing="10">
+                                      RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+                                      RowSpacing="8"
+                                      ColumnSpacing="10">
 
                                     <Label Grid.Row="0" Grid.Column="0"
                                            Text="System ID:"

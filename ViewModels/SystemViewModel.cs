@@ -35,109 +35,110 @@ public class SystemViewModel : INotifyPropertyChanged
         "No"
     };
 
+    public ObservableCollection<string> ValidationStatuses { get; set; } = new()
+    {
+        "Validated",
+        "In Progress",
+        "Not Validated"
+    };
+
+    // ======================
+    // DASHBOARD COUNTS
+    // ======================
+
+    public int TotalSystems => Systems.Count;
+
+    public int GxpRelevantSystems =>
+        Systems.Count(s => s.IsGxpRelevant == "Yes");
+
+    public int ValidatedSystems =>
+        Systems.Count(s => s.ValidationStatus.Equals("Validated", StringComparison.OrdinalIgnoreCase));
+
+    public int InProgressSystems =>
+        Systems.Count(s => s.ValidationStatus.Equals("In Progress", StringComparison.OrdinalIgnoreCase));
+
+    public int NotValidatedSystems =>
+        Systems.Count(s => s.ValidationStatus.Equals("Not Validated", StringComparison.OrdinalIgnoreCase));
+
+    // ======================
+    // FORM FIELDS
+    // ======================
+
     private string _systemCode = string.Empty;
     public string SystemCode
     {
         get => _systemCode;
-        set
-        {
-            _systemCode = value;
-            OnPropertyChanged();
-        }
+        set { _systemCode = value; OnPropertyChanged(); }
     }
 
     private string _systemName = string.Empty;
     public string SystemName
     {
         get => _systemName;
-        set
-        {
-            _systemName = value;
-            OnPropertyChanged();
-        }
+        set { _systemName = value; OnPropertyChanged(); }
     }
 
     private string _selectedDepartment = string.Empty;
     public string SelectedDepartment
     {
         get => _selectedDepartment;
-        set
-        {
-            _selectedDepartment = value;
-            OnPropertyChanged();
-        }
+        set { _selectedDepartment = value; OnPropertyChanged(); }
     }
 
     private string _owner = string.Empty;
     public string Owner
     {
         get => _owner;
-        set
-        {
-            _owner = value;
-            OnPropertyChanged();
-        }
+        set { _owner = value; OnPropertyChanged(); }
     }
 
     private string _vendor = string.Empty;
     public string Vendor
     {
         get => _vendor;
-        set
-        {
-            _vendor = value;
-            OnPropertyChanged();
-        }
+        set { _vendor = value; OnPropertyChanged(); }
     }
 
     private string _softwareVersion = string.Empty;
     public string SoftwareVersion
     {
         get => _softwareVersion;
-        set
-        {
-            _softwareVersion = value;
-            OnPropertyChanged();
-        }
+        set { _softwareVersion = value; OnPropertyChanged(); }
     }
 
     private string _selectedGampCategory = string.Empty;
     public string SelectedGampCategory
     {
         get => _selectedGampCategory;
-        set
-        {
-            _selectedGampCategory = value;
-            OnPropertyChanged();
-        }
+        set { _selectedGampCategory = value; OnPropertyChanged(); }
     }
 
     private string _selectedGxpOption = string.Empty;
     public string SelectedGxpOption
     {
         get => _selectedGxpOption;
-        set
-        {
-            _selectedGxpOption = value;
-            OnPropertyChanged();
-        }
+        set { _selectedGxpOption = value; OnPropertyChanged(); }
     }
 
     private string _validationStatus = string.Empty;
     public string ValidationStatus
     {
         get => _validationStatus;
-        set
-        {
-            _validationStatus = value;
-            OnPropertyChanged();
-        }
+        set { _validationStatus = value; OnPropertyChanged(); }
     }
+
+    // ======================
+    // CONSTRUCTOR
+    // ======================
 
     public SystemViewModel(SystemRepository systemRepository)
     {
         _systemRepository = systemRepository;
     }
+
+    // ======================
+    // LOAD DATA
+    // ======================
 
     public async Task LoadSystemsAsync()
     {
@@ -149,7 +150,13 @@ public class SystemViewModel : INotifyPropertyChanged
         {
             Systems.Add(system);
         }
+
+        RefreshDashboardCounts();
     }
+
+    // ======================
+    // ADD SYSTEM
+    // ======================
 
     public async Task AddSystemAsync()
     {
@@ -172,6 +179,10 @@ public class SystemViewModel : INotifyPropertyChanged
 
         await LoadSystemsAsync();
     }
+
+    // ======================
+    // HELPERS
+    // ======================
 
     private int GetDepartmentId(string departmentName)
     {
@@ -198,6 +209,19 @@ public class SystemViewModel : INotifyPropertyChanged
         SelectedGxpOption = string.Empty;
         ValidationStatus = string.Empty;
     }
+
+    private void RefreshDashboardCounts()
+    {
+        OnPropertyChanged(nameof(TotalSystems));
+        OnPropertyChanged(nameof(GxpRelevantSystems));
+        OnPropertyChanged(nameof(ValidatedSystems));
+        OnPropertyChanged(nameof(InProgressSystems));
+        OnPropertyChanged(nameof(NotValidatedSystems));
+    }
+
+    // ======================
+    // NOTIFY
+    // ======================
 
     public event PropertyChangedEventHandler? PropertyChanged;
 
