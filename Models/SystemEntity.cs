@@ -1,7 +1,10 @@
-﻿namespace CSVGxpInventoryApp.Models;
+﻿using SQLite;
+
+namespace CSVGxpInventoryApp.Models;
 
 public class SystemEntity
 {
+    [PrimaryKey, AutoIncrement]
     public int SystemId { get; set; }
 
     public string SystemCode { get; set; } = string.Empty;
@@ -21,4 +24,6 @@ public class SystemEntity
     public string IsGxpRelevant { get; set; } = string.Empty;
 
     public string ValidationStatus { get; set; } = string.Empty;
+
+    public bool IsObsolete { get; set; } = false;
 }

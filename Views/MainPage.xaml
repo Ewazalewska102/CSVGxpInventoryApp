@@ -103,7 +103,7 @@
                 </Border>
 
                 <Border Grid.Row="2"
-                        Grid.ColumnSpan="2"
+                        Grid.Column="0"
                         StrokeThickness="0"
                         BackgroundColor="#FCE7F3"
                         Padding="16"
@@ -117,6 +117,24 @@
                                FontSize="30"
                                FontAttributes="Bold"
                                TextColor="#9D174D" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Grid.Row="2"
+                        Grid.Column="1"
+                        StrokeThickness="0"
+                        BackgroundColor="#E5E7EB"
+                        Padding="16"
+                        StrokeShape="RoundRectangle 18">
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Obsolete"
+                               FontSize="14"
+                               FontAttributes="Bold"
+                               TextColor="#374151" />
+                        <Label Text="{Binding ObsoleteSystemsCount}"
+                               FontSize="30"
+                               FontAttributes="Bold"
+                               TextColor="#374151" />
                     </VerticalStackLayout>
                 </Border>
 
@@ -221,6 +239,14 @@
                                            FontAttributes="Bold" />
 
                                 </Grid>
+
+                                <Button Text="Mark as Obsolete"
+                                        BackgroundColor="#FCA5A5"
+                                        TextColor="#7F1D1D"
+                                        FontAttributes="Bold"
+                                        CornerRadius="12"
+                                        HeightRequest="44"
+                                        Clicked="OnMarkAsObsoleteClicked" />
 
                             </VerticalStackLayout>
 

@@ -11,6 +11,7 @@ public class SystemViewModel : INotifyPropertyChanged
     private readonly SystemRepository _systemRepository;
 
     public ObservableCollection<SystemEntity> Systems { get; set; } = new();
+    public ObservableCollection<SystemEntity> ObsoleteSystems { get; set; } = new();
 
     public ObservableCollection<string> Departments { get; set; } = new()
     {
@@ -42,28 +43,15 @@ public class SystemViewModel : INotifyPropertyChanged
         "Not Validated"
     };
 
-    // ======================
     // DASHBOARD COUNTS
-    // ======================
-
     public int TotalSystems => Systems.Count;
+    public int GxpRelevantSystems => Systems.Count(s => s.IsGxpRelevant == "Yes");
+    public int ValidatedSystems => Systems.Count(s => s.ValidationStatus.Equals("Validated", StringComparison.OrdinalIgnoreCase));
+    public int InProgressSystems => Systems.Count(s => s.ValidationStatus.Equals("In Progress", StringComparison.OrdinalIgnoreCase));
+    public int NotValidatedSystems => Systems.Count(s => s.ValidationStatus.Equals("Not Validated", StringComparison.OrdinalIgnoreCase));
+    public int ObsoleteSystemsCount => ObsoleteSystems.Count;
 
-    public int GxpRelevantSystems =>
-        Systems.Count(s => s.IsGxpRelevant == "Yes");
-
-    public int ValidatedSystems =>
-        Systems.Count(s => s.ValidationStatus.Equals("Validated", StringComparison.OrdinalIgnoreCase));
-
-    public int InProgressSystems =>
-        Systems.Count(s => s.ValidationStatus.Equals("In Progress", StringComparison.OrdinalIgnoreCase));
-
-    public int NotValidatedSystems =>
-        Systems.Count(s => s.ValidationStatus.Equals("Not Validated", StringComparison.OrdinalIgnoreCase));
-
-    // ======================
     // FORM FIELDS
-    // ======================
-
     private string _systemCode = string.Empty;
     public string SystemCode
     {
@@ -127,36 +115,30 @@ public class SystemViewModel : INotifyPropertyChanged
         set { _validationStatus = value; OnPropertyChanged(); }
     }
 
-    // ======================
-    // CONSTRUCTOR
-    // ======================
-
     public SystemViewModel(SystemRepository systemRepository)
     {
         _systemRepository = systemRepository;
     }
 
-    // ======================
-    // LOAD DATA
-    // ======================
-
     public async Task LoadSystemsAsync()
     {
-        var systems = await _systemRepository.GetSystemsAsync();
+        var activeSystems = await _systemRepository.GetSystemsAsync();
+        var obsoleteSystems = await _systemRepository.GetObsoleteSystemsAsync();
 
         Systems.Clear();
-
-        foreach (var system in systems)
+        foreach (var system in activeSystems)
         {
             Systems.Add(system);
         }
 
+        ObsoleteSystems.Clear();
+        foreach (var system in obsoleteSystems)
+        {
+            ObsoleteSystems.Add(system);
+        }
+
         RefreshDashboardCounts();
     }
-
-    // ======================
-    // ADD SYSTEM
-    // ======================
 
     public async Task AddSystemAsync()
     {
@@ -170,7 +152,8 @@ public class SystemViewModel : INotifyPropertyChanged
             SoftwareVersion = SoftwareVersion,
             GampCategory = SelectedGampCategory,
             IsGxpRelevant = SelectedGxpOption,
-            ValidationStatus = ValidationStatus
+            ValidationStatus = ValidationStatus,
+            IsObsolete = false
         };
 
         await _systemRepository.AddSystemAsync(newSystem);
@@ -180,9 +163,25 @@ public class SystemViewModel : INotifyPropertyChanged
         await LoadSystemsAsync();
     }
 
-    // ======================
-    // HELPERS
-    // ======================
+    public async Task MarkSystemAsObsoleteAsync(SystemEntity system)
+    {
+        if (system == null)
+            return;
+
+        await _systemRepository.MarkAsObsoleteAsync(system);
+
+        await LoadSystemsAsync();
+    }
+
+    public async Task UpdateSystemAsync(SystemEntity system)
+    {
+        if (system == null)
+            return;
+
+        await _systemRepository.UpdateSystemAsync(system);
+
+        await LoadSystemsAsync();
+    }
 
     private int GetDepartmentId(string departmentName)
     {
@@ -217,11 +216,8 @@ public class SystemViewModel : INotifyPropertyChanged
         OnPropertyChanged(nameof(ValidatedSystems));
         OnPropertyChanged(nameof(InProgressSystems));
         OnPropertyChanged(nameof(NotValidatedSystems));
+        OnPropertyChanged(nameof(ObsoleteSystemsCount));
     }
-
-    // ======================
-    // NOTIFY
-    // ======================
 
     public event PropertyChangedEventHandler? PropertyChanged;
 
