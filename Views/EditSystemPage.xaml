@@ -14,34 +14,95 @@
                    HorizontalOptions="Center"
                    TextColor="#1E293B" />
 
+            <Label Text="Update system details and compliance schedule."
+                   FontSize="14"
+                   TextColor="#64748B"
+                   HorizontalTextAlignment="Center" />
+
             <Border StrokeThickness="1"
                     Stroke="#D8DEE9"
                     BackgroundColor="#FFFFFF"
-                    StrokeShape="RoundRectangle 16"
+                    StrokeShape="RoundRectangle 18"
                     Padding="18">
 
-                <VerticalStackLayout Spacing="14">
+                <VerticalStackLayout Spacing="18">
 
-                    <Label Text="System Name" FontAttributes="Bold"/>
-                    <Entry Text="{Binding SelectedSystem.SystemName}" />
+                    <Border StrokeThickness="0"
+                            BackgroundColor="#F8FAFC"
+                            Padding="16"
+                            StrokeShape="RoundRectangle 16">
 
-                    <Label Text="Owner" FontAttributes="Bold"/>
-                    <Entry Text="{Binding SelectedSystem.Owner}" />
+                        <VerticalStackLayout Spacing="14">
 
-                    <Label Text="Vendor" FontAttributes="Bold"/>
-                    <Entry Text="{Binding SelectedSystem.Vendor}" />
+                            <Label Text="System Details"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   TextColor="#1E293B" />
 
-                    <Label Text="Software Version" FontAttributes="Bold"/>
-                    <Entry Text="{Binding SelectedSystem.SoftwareVersion}" />
+                            <Label Text="System Name" FontAttributes="Bold" TextColor="#334155"/>
+                            <Entry Text="{Binding SelectedSystem.SystemName}" />
 
-                    <Label Text="Validation Status" FontAttributes="Bold"/>
-                    <Picker ItemsSource="{Binding ValidationStatuses}"
-                            SelectedItem="{Binding SelectedSystem.ValidationStatus}" />
+                            <Label Text="Owner" FontAttributes="Bold" TextColor="#334155"/>
+                            <Entry Text="{Binding SelectedSystem.Owner}" />
+
+                            <Label Text="Vendor" FontAttributes="Bold" TextColor="#334155"/>
+                            <Entry Text="{Binding SelectedSystem.Vendor}" />
+
+                            <Label Text="Software Version" FontAttributes="Bold" TextColor="#334155"/>
+                            <Entry Text="{Binding SelectedSystem.SoftwareVersion}" />
+
+                            <Label Text="Validation Status" FontAttributes="Bold" TextColor="#334155"/>
+                            <Picker ItemsSource="{Binding ValidationStatuses}"
+                                    SelectedItem="{Binding SelectedSystem.ValidationStatus}" />
+
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border StrokeThickness="0"
+                            BackgroundColor="#EEF2FF"
+                            Padding="16"
+                            StrokeShape="RoundRectangle 16">
+
+                        <VerticalStackLayout Spacing="14">
+
+                            <Label Text="Compliance Schedule"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   TextColor="#3730A3" />
+
+                            <Label Text="Last Periodic Review Date" FontAttributes="Bold" TextColor="#334155"/>
+                            <DatePicker Date="{Binding SelectedSystem.LastReviewDate}" />
+
+                            <Label Text="Periodic Review Frequency (months)" FontAttributes="Bold" TextColor="#334155"/>
+                            <Picker Title="Select frequency"
+                                    ItemsSource="{Binding FrequencyOptions}"
+                                    SelectedItem="{Binding SelectedSystem.ReviewFrequencyMonths}" />
+
+                            <Label Text="Last Backup Verification Date" FontAttributes="Bold" TextColor="#334155"/>
+                            <DatePicker Date="{Binding SelectedSystem.LastBackupDate}" />
+
+                            <Label Text="Backup Verification Frequency (months)" FontAttributes="Bold" TextColor="#334155"/>
+                            <Picker Title="Select frequency"
+                                    ItemsSource="{Binding FrequencyOptions}"
+                                    SelectedItem="{Binding SelectedSystem.BackupFrequencyMonths}" />
+
+                            <Label Text="Last Audit Trail Review Date" FontAttributes="Bold" TextColor="#334155"/>
+                            <DatePicker Date="{Binding SelectedSystem.LastAuditTrailReviewDate}" />
+
+                            <Label Text="Audit Trail Review Frequency (months)" FontAttributes="Bold" TextColor="#334155"/>
+                            <Picker Title="Select frequency"
+                                    ItemsSource="{Binding FrequencyOptions}"
+                                    SelectedItem="{Binding SelectedSystem.AuditTrailFrequencyMonths}" />
+
+                        </VerticalStackLayout>
+                    </Border>
 
                     <Button Text="Save Changes"
+                            FontAttributes="Bold"
+                            HeightRequest="48"
                             BackgroundColor="#A78BFA"
                             TextColor="White"
-                            CornerRadius="12"
+                            CornerRadius="14"
                             Clicked="OnSaveClicked"/>
 
                 </VerticalStackLayout>
