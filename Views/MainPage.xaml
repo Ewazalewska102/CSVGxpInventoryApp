@@ -134,6 +134,57 @@
                    TextColor="#1E293B"
                    Margin="0,8,0,0" />
 
+            <Border StrokeThickness="0"
+                    BackgroundColor="#FFFFFF"
+                    Padding="16"
+                    StrokeShape="RoundRectangle 18">
+
+                <VerticalStackLayout Spacing="12">
+
+                    <Label Text="Search and Filter"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="#1E293B" />
+
+                    <Entry Placeholder="Search by system name"
+                           Text="{Binding SearchText}"
+                           BackgroundColor="#F8FAFC"
+                           TextColor="#111827"
+                           PlaceholderColor="#94A3B8" />
+
+                    <Picker Title="Filter by Department"
+                            ItemsSource="{Binding FilterDepartments}"
+                            SelectedItem="{Binding SelectedFilterDepartment}"
+                            BackgroundColor="#F8FAFC"
+                            TextColor="#111827" />
+
+                    <Picker Title="Filter by Validation Status"
+                            ItemsSource="{Binding FilterValidationStatuses}"
+                            SelectedItem="{Binding SelectedFilterValidationStatus}"
+                            BackgroundColor="#F8FAFC"
+                            TextColor="#111827" />
+
+                    <Grid ColumnDefinitions="*,Auto"
+                          ColumnSpacing="12">
+
+                        <Label Grid.Column="0"
+                               Text="{Binding FilteredSystemsCount, StringFormat='Displayed records: {0}'}"
+                               TextColor="#475569"
+                               VerticalOptions="Center" />
+
+                        <Button Grid.Column="1"
+                                Text="Clear Filters"
+                                Command="{Binding ClearFiltersCommand}"
+                                BackgroundColor="#CBD5E1"
+                                TextColor="#1E293B"
+                                FontAttributes="Bold"
+                                CornerRadius="12" />
+
+                    </Grid>
+
+                </VerticalStackLayout>
+            </Border>
+
             <CollectionView ItemsSource="{Binding Systems}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
@@ -286,7 +337,7 @@
                                         FontAttributes="Bold"
                                         CornerRadius="12"
                                         HeightRequest="44"
-                                        Clicked="OnEditClicked"/>
+                                        Clicked="OnEditClicked" />
 
                             </VerticalStackLayout>
 
