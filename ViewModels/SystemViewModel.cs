@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows.Input;
 using CSVGxpInventoryApp.Models;
 using CSVGxpInventoryApp.Repositories;
 
@@ -9,12 +10,23 @@ namespace CSVGxpInventoryApp.ViewModels;
 public class SystemViewModel : INotifyPropertyChanged
 {
     private readonly SystemRepository _systemRepository;
+    private List<SystemEntity> _allActiveSystems = new();
 
     public ObservableCollection<SystemEntity> Systems { get; set; } = new();
     public ObservableCollection<SystemEntity> ObsoleteSystems { get; set; } = new();
 
     public ObservableCollection<string> Departments { get; set; } = new()
     {
+        "Quality Assurance",
+        "Quality Control",
+        "Production",
+        "Technical",
+        "Microbiology"
+    };
+
+    public ObservableCollection<string> FilterDepartments { get; set; } = new()
+    {
+        "All Departments",
         "Quality Assurance",
         "Quality Control",
         "Production",
@@ -43,6 +55,14 @@ public class SystemViewModel : INotifyPropertyChanged
         "Not Validated"
     };
 
+    public ObservableCollection<string> FilterValidationStatuses { get; set; } = new()
+    {
+        "All Validation Statuses",
+        "Validated",
+        "In Progress",
+        "Not Validated"
+    };
+
     public ObservableCollection<int> FrequencyOptions { get; set; } = new()
     {
         1,
@@ -51,20 +71,57 @@ public class SystemViewModel : INotifyPropertyChanged
         12
     };
 
+    public ICommand ClearFiltersCommand { get; }
+
     public SystemEntity? SelectedSystem { get; set; }
 
-    public int TotalSystems => Systems.Count;
-    public int GxpRelevantSystems => Systems.Count(s => s.IsGxpRelevant == "Yes");
-    public int ValidatedSystems => Systems.Count(s => s.ValidationStatus.Equals("Validated", StringComparison.OrdinalIgnoreCase));
-    public int InProgressSystems => Systems.Count(s => s.ValidationStatus.Equals("In Progress", StringComparison.OrdinalIgnoreCase));
-    public int NotValidatedSystems => Systems.Count(s => s.ValidationStatus.Equals("Not Validated", StringComparison.OrdinalIgnoreCase));
+    public int TotalSystems => _allActiveSystems.Count;
+    public int GxpRelevantSystems => _allActiveSystems.Count(s => s.IsGxpRelevant == "Yes");
+    public int ValidatedSystems => _allActiveSystems.Count(s => s.ValidationStatus.Equals("Validated", StringComparison.OrdinalIgnoreCase));
+    public int InProgressSystems => _allActiveSystems.Count(s => s.ValidationStatus.Equals("In Progress", StringComparison.OrdinalIgnoreCase));
+    public int NotValidatedSystems => _allActiveSystems.Count(s => s.ValidationStatus.Equals("Not Validated", StringComparison.OrdinalIgnoreCase));
     public int ObsoleteSystemsCount => ObsoleteSystems.Count;
 
-    public int UpcomingComplianceTasks => Systems.Sum(s =>
-        CountUpcomingTasks(s));
+    public int UpcomingComplianceTasks => _allActiveSystems.Sum(s => CountUpcomingTasks(s));
+    public int OverdueComplianceTasks => _allActiveSystems.Sum(s => CountOverdueTasks(s));
 
-    public int OverdueComplianceTasks => Systems.Sum(s =>
-        CountOverdueTasks(s));
+    public int FilteredSystemsCount => Systems.Count;
+
+    private string _searchText = string.Empty;
+    public string SearchText
+    {
+        get => _searchText;
+        set
+        {
+            _searchText = value;
+            OnPropertyChanged();
+            ApplyFilters();
+        }
+    }
+
+    private string _selectedFilterDepartment = "All Departments";
+    public string SelectedFilterDepartment
+    {
+        get => _selectedFilterDepartment;
+        set
+        {
+            _selectedFilterDepartment = value;
+            OnPropertyChanged();
+            ApplyFilters();
+        }
+    }
+
+    private string _selectedFilterValidationStatus = "All Validation Statuses";
+    public string SelectedFilterValidationStatus
+    {
+        get => _selectedFilterValidationStatus;
+        set
+        {
+            _selectedFilterValidationStatus = value;
+            OnPropertyChanged();
+            ApplyFilters();
+        }
+    }
 
     private string _systemCode = string.Empty;
     public string SystemCode
@@ -174,6 +231,7 @@ public class SystemViewModel : INotifyPropertyChanged
     public SystemViewModel(SystemRepository systemRepository)
     {
         _systemRepository = systemRepository;
+        ClearFiltersCommand = new Command(ClearFilters);
     }
 
     public async Task LoadSystemsAsync()
@@ -181,11 +239,7 @@ public class SystemViewModel : INotifyPropertyChanged
         var activeSystems = await _systemRepository.GetSystemsAsync();
         var obsoleteSystems = await _systemRepository.GetObsoleteSystemsAsync();
 
-        Systems.Clear();
-        foreach (var system in activeSystems)
-        {
-            Systems.Add(system);
-        }
+        _allActiveSystems = activeSystems.ToList();
 
         ObsoleteSystems.Clear();
         foreach (var system in obsoleteSystems)
@@ -193,7 +247,53 @@ public class SystemViewModel : INotifyPropertyChanged
             ObsoleteSystems.Add(system);
         }
 
+        ApplyFilters();
         RefreshDashboardCounts();
+    }
+
+    private void ApplyFilters()
+    {
+        var filteredSystems = _allActiveSystems.AsEnumerable();
+
+        if (!string.IsNullOrWhiteSpace(SearchText))
+        {
+            filteredSystems = filteredSystems.Where(s =>
+                !string.IsNullOrWhiteSpace(s.SystemName) &&
+                s.SystemName.Contains(SearchText, StringComparison.OrdinalIgnoreCase));
+        }
+
+        if (!string.IsNullOrWhiteSpace(SelectedFilterDepartment) &&
+            SelectedFilterDepartment != "All Departments")
+        {
+            int departmentId = GetDepartmentId(SelectedFilterDepartment);
+
+            filteredSystems = filteredSystems.Where(s => s.DepartmentId == departmentId);
+        }
+
+        if (!string.IsNullOrWhiteSpace(SelectedFilterValidationStatus) &&
+            SelectedFilterValidationStatus != "All Validation Statuses")
+        {
+            filteredSystems = filteredSystems.Where(s =>
+                !string.IsNullOrWhiteSpace(s.ValidationStatus) &&
+                s.ValidationStatus.Equals(SelectedFilterValidationStatus, StringComparison.OrdinalIgnoreCase));
+        }
+
+        Systems.Clear();
+
+        foreach (var system in filteredSystems)
+        {
+            Systems.Add(system);
+        }
+
+        OnPropertyChanged(nameof(FilteredSystemsCount));
+    }
+
+    private void ClearFilters()
+    {
+        SearchText = string.Empty;
+        SelectedFilterDepartment = "All Departments";
+        SelectedFilterValidationStatus = "All Validation Statuses";
+        ApplyFilters();
     }
 
     public async Task AddSystemAsync()
