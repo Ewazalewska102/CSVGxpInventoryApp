@@ -28,6 +28,11 @@ public partial class MainPage : ContentPage
         await Shell.Current.GoToAsync(nameof(AddSystemPage));
     }
 
+    private async void OnViewReportClicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync(nameof(ReportPage));
+    }
+
     private async void OnEditClicked(object sender, EventArgs e)
     {
         if (sender is Button button && button.BindingContext is SystemEntity selectedSystem)
