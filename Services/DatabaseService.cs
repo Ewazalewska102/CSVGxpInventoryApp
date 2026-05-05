@@ -12,7 +12,7 @@ public class DatabaseService
         if (_database != null)
             return;
 
-        var databasePath = Path.Combine(FileSystem.AppDataDirectory, "gxp_inventory.db");
+        var databasePath = Path.Combine(FileSystem.AppDataDirectory, "gxp_inventory_v3.db");
 
         _database = new SQLiteAsyncConnection(databasePath);
 
