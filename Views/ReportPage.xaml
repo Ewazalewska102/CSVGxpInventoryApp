@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CSVGxpInventoryApp.Views.ReportPage"
+             Title="System Report"
+             BackgroundColor="#EEF2F7">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="22" Spacing="16">
+
+            <Label Text="System Inventory Report"
+                   FontSize="26"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   TextColor="#1E293B"/>
+
+            <!-- Summary -->
+            <Border BackgroundColor="#FFFFFF"
+                    Padding="16"
+                    StrokeShape="RoundRectangle 16">
+
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Summary"
+                           FontSize="18"
+                           FontAttributes="Bold"/>
+
+                    <Label Text="{Binding TotalSystems, StringFormat='Total Active Systems: {0}'}"/>
+                    <Label Text="{Binding ObsoleteSystemsCount, StringFormat='Obsolete Systems: {0}'}"/>
+                    <Label Text="{Binding GxpRelevantSystems, StringFormat='GxP Relevant Systems: {0}'}"/>
+                </VerticalStackLayout>
+
+            </Border>
+
+            <!-- Validation Status -->
+            <Border BackgroundColor="#FFFFFF"
+                    Padding="16"
+                    StrokeShape="RoundRectangle 16">
+
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Validation Status Breakdown"
+                           FontSize="18"
+                           FontAttributes="Bold"/>
+
+                    <Label Text="{Binding ValidatedSystems, StringFormat='Validated: {0}'}"/>
+                    <Label Text="{Binding InProgressSystems, StringFormat='In Progress: {0}'}"/>
+                    <Label Text="{Binding NotValidatedSystems, StringFormat='Not Validated: {0}'}"/>
+                </VerticalStackLayout>
+
+            </Border>
+
+            <!-- Compliance -->
+            <Border BackgroundColor="#FFFFFF"
+                    Padding="16"
+                    StrokeShape="RoundRectangle 16">
+
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Compliance Overview"
+                           FontSize="18"
+                           FontAttributes="Bold"/>
+
+                    <Label Text="{Binding UpcomingComplianceTasks, StringFormat='Upcoming Tasks: {0}'}"/>
+                    <Label Text="{Binding OverdueComplianceTasks, StringFormat='Overdue Tasks: {0}'}"/>
+                </VerticalStackLayout>
+
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

@@ -30,88 +30,56 @@
                   ColumnSpacing="12"
                   RowSpacing="12">
 
-                <Border Grid.Row="0" Grid.Column="0"
-                        StrokeThickness="0"
-                        BackgroundColor="#DBEAFE"
-                        Padding="16"
-                        StrokeShape="RoundRectangle 18">
+                <Border Grid.Row="0" Grid.Column="0" StrokeThickness="0" BackgroundColor="#DBEAFE" Padding="16" StrokeShape="RoundRectangle 18">
                     <VerticalStackLayout Spacing="6">
                         <Label Text="Total Systems" FontSize="14" FontAttributes="Bold" TextColor="#1E3A8A" />
                         <Label Text="{Binding TotalSystems}" FontSize="30" FontAttributes="Bold" TextColor="#1E3A8A" />
                     </VerticalStackLayout>
                 </Border>
 
-                <Border Grid.Row="0" Grid.Column="1"
-                        StrokeThickness="0"
-                        BackgroundColor="#D1FAE5"
-                        Padding="16"
-                        StrokeShape="RoundRectangle 18">
+                <Border Grid.Row="0" Grid.Column="1" StrokeThickness="0" BackgroundColor="#D1FAE5" Padding="16" StrokeShape="RoundRectangle 18">
                     <VerticalStackLayout Spacing="6">
                         <Label Text="GxP Relevant" FontSize="14" FontAttributes="Bold" TextColor="#065F46" />
                         <Label Text="{Binding GxpRelevantSystems}" FontSize="30" FontAttributes="Bold" TextColor="#065F46" />
                     </VerticalStackLayout>
                 </Border>
 
-                <Border Grid.Row="1" Grid.Column="0"
-                        StrokeThickness="0"
-                        BackgroundColor="#EDE9FE"
-                        Padding="16"
-                        StrokeShape="RoundRectangle 18">
+                <Border Grid.Row="1" Grid.Column="0" StrokeThickness="0" BackgroundColor="#EDE9FE" Padding="16" StrokeShape="RoundRectangle 18">
                     <VerticalStackLayout Spacing="6">
                         <Label Text="Validated" FontSize="14" FontAttributes="Bold" TextColor="#5B21B6" />
                         <Label Text="{Binding ValidatedSystems}" FontSize="30" FontAttributes="Bold" TextColor="#5B21B6" />
                     </VerticalStackLayout>
                 </Border>
 
-                <Border Grid.Row="1" Grid.Column="1"
-                        StrokeThickness="0"
-                        BackgroundColor="#FEF3C7"
-                        Padding="16"
-                        StrokeShape="RoundRectangle 18">
+                <Border Grid.Row="1" Grid.Column="1" StrokeThickness="0" BackgroundColor="#FEF3C7" Padding="16" StrokeShape="RoundRectangle 18">
                     <VerticalStackLayout Spacing="6">
                         <Label Text="In Progress" FontSize="14" FontAttributes="Bold" TextColor="#92400E" />
                         <Label Text="{Binding InProgressSystems}" FontSize="30" FontAttributes="Bold" TextColor="#92400E" />
                     </VerticalStackLayout>
                 </Border>
 
-                <Border Grid.Row="2" Grid.Column="0"
-                        StrokeThickness="0"
-                        BackgroundColor="#FCE7F3"
-                        Padding="16"
-                        StrokeShape="RoundRectangle 18">
+                <Border Grid.Row="2" Grid.Column="0" StrokeThickness="0" BackgroundColor="#FCE7F3" Padding="16" StrokeShape="RoundRectangle 18">
                     <VerticalStackLayout Spacing="6">
                         <Label Text="Not Validated" FontSize="14" FontAttributes="Bold" TextColor="#9D174D" />
                         <Label Text="{Binding NotValidatedSystems}" FontSize="30" FontAttributes="Bold" TextColor="#9D174D" />
                     </VerticalStackLayout>
                 </Border>
 
-                <Border Grid.Row="2" Grid.Column="1"
-                        StrokeThickness="0"
-                        BackgroundColor="#E5E7EB"
-                        Padding="16"
-                        StrokeShape="RoundRectangle 18">
+                <Border Grid.Row="2" Grid.Column="1" StrokeThickness="0" BackgroundColor="#E5E7EB" Padding="16" StrokeShape="RoundRectangle 18">
                     <VerticalStackLayout Spacing="6">
                         <Label Text="Obsolete" FontSize="14" FontAttributes="Bold" TextColor="#374151" />
                         <Label Text="{Binding ObsoleteSystemsCount}" FontSize="30" FontAttributes="Bold" TextColor="#374151" />
                     </VerticalStackLayout>
                 </Border>
 
-                <Border Grid.Row="3" Grid.Column="0"
-                        StrokeThickness="0"
-                        BackgroundColor="#FFEDD5"
-                        Padding="16"
-                        StrokeShape="RoundRectangle 18">
+                <Border Grid.Row="3" Grid.Column="0" StrokeThickness="0" BackgroundColor="#FFEDD5" Padding="16" StrokeShape="RoundRectangle 18">
                     <VerticalStackLayout Spacing="6">
                         <Label Text="Upcoming Tasks" FontSize="14" FontAttributes="Bold" TextColor="#9A3412" />
                         <Label Text="{Binding UpcomingComplianceTasks}" FontSize="30" FontAttributes="Bold" TextColor="#9A3412" />
                     </VerticalStackLayout>
                 </Border>
 
-                <Border Grid.Row="3" Grid.Column="1"
-                        StrokeThickness="0"
-                        BackgroundColor="#FEE2E2"
-                        Padding="16"
-                        StrokeShape="RoundRectangle 18">
+                <Border Grid.Row="3" Grid.Column="1" StrokeThickness="0" BackgroundColor="#FEE2E2" Padding="16" StrokeShape="RoundRectangle 18">
                     <VerticalStackLayout Spacing="6">
                         <Label Text="Overdue Tasks" FontSize="14" FontAttributes="Bold" TextColor="#991B1B" />
                         <Label Text="{Binding OverdueComplianceTasks}" FontSize="30" FontAttributes="Bold" TextColor="#991B1B" />
@@ -128,11 +96,13 @@
                     CornerRadius="14"
                     Clicked="OnAddSystemClicked" />
 
-            <Label Text="System Inventory List"
-                   FontSize="20"
-                   FontAttributes="Bold"
-                   TextColor="#1E293B"
-                   Margin="0,8,0,0" />
+            <Button Text="View Report"
+                    FontAttributes="Bold"
+                    HeightRequest="50"
+                    BackgroundColor="#34D399"
+                    TextColor="White"
+                    CornerRadius="14"
+                    Clicked="OnViewReportClicked" />
 
             <Border StrokeThickness="0"
                     BackgroundColor="#FFFFFF"
@@ -184,6 +154,12 @@
 
                 </VerticalStackLayout>
             </Border>
+
+            <Label Text="System Inventory List"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   TextColor="#1E293B"
+                   Margin="0,8,0,0" />
 
             <CollectionView ItemsSource="{Binding Systems}">
                 <CollectionView.ItemTemplate>
@@ -245,78 +221,33 @@
                                                FontAttributes="Bold"
                                                TextColor="#3730A3" />
 
-                                        <Border StrokeThickness="0"
-                                                BackgroundColor="#FFFFFF"
-                                                Padding="12"
-                                                StrokeShape="RoundRectangle 12">
+                                        <Border StrokeThickness="0" BackgroundColor="#FFFFFF" Padding="12" StrokeShape="RoundRectangle 12">
                                             <VerticalStackLayout Spacing="6">
-                                                <Label Text="Periodic Review"
-                                                       FontAttributes="Bold"
-                                                       TextColor="#1E293B" />
-
-                                                <Label Text="{Binding LastReviewDate, StringFormat='Last completed: {0:dd MMM yyyy}'}"
-                                                       TextColor="#475569" />
-
-                                                <Label Text="{Binding ReviewFrequencyMonths, StringFormat='Frequency: every {0} month(s)'}"
-                                                       TextColor="#475569" />
-
-                                                <Label Text="{Binding NextReviewDueDate, StringFormat='Next due: {0:dd MMM yyyy}'}"
-                                                       TextColor="#334155"
-                                                       FontAttributes="Bold" />
-
-                                                <Label Text="{Binding ReviewStatusMessage}"
-                                                       TextColor="#9A3412"
-                                                       FontAttributes="Bold" />
+                                                <Label Text="Periodic Review" FontAttributes="Bold" TextColor="#1E293B" />
+                                                <Label Text="{Binding LastReviewDate, StringFormat='Last completed: {0:dd MMM yyyy}'}" TextColor="#475569" />
+                                                <Label Text="{Binding ReviewFrequencyMonths, StringFormat='Frequency: every {0} month(s)'}" TextColor="#475569" />
+                                                <Label Text="{Binding NextReviewDueDate, StringFormat='Next due: {0:dd MMM yyyy}'}" TextColor="#334155" FontAttributes="Bold" />
+                                                <Label Text="{Binding ReviewStatusMessage}" TextColor="#9A3412" FontAttributes="Bold" />
                                             </VerticalStackLayout>
                                         </Border>
 
-                                        <Border StrokeThickness="0"
-                                                BackgroundColor="#FFFFFF"
-                                                Padding="12"
-                                                StrokeShape="RoundRectangle 12">
+                                        <Border StrokeThickness="0" BackgroundColor="#FFFFFF" Padding="12" StrokeShape="RoundRectangle 12">
                                             <VerticalStackLayout Spacing="6">
-                                                <Label Text="Backup Verification"
-                                                       FontAttributes="Bold"
-                                                       TextColor="#1E293B" />
-
-                                                <Label Text="{Binding LastBackupDate, StringFormat='Last completed: {0:dd MMM yyyy}'}"
-                                                       TextColor="#475569" />
-
-                                                <Label Text="{Binding BackupFrequencyMonths, StringFormat='Frequency: every {0} month(s)'}"
-                                                       TextColor="#475569" />
-
-                                                <Label Text="{Binding NextBackupDueDate, StringFormat='Next due: {0:dd MMM yyyy}'}"
-                                                       TextColor="#334155"
-                                                       FontAttributes="Bold" />
-
-                                                <Label Text="{Binding BackupStatusMessage}"
-                                                       TextColor="#9A3412"
-                                                       FontAttributes="Bold" />
+                                                <Label Text="Backup Verification" FontAttributes="Bold" TextColor="#1E293B" />
+                                                <Label Text="{Binding LastBackupDate, StringFormat='Last completed: {0:dd MMM yyyy}'}" TextColor="#475569" />
+                                                <Label Text="{Binding BackupFrequencyMonths, StringFormat='Frequency: every {0} month(s)'}" TextColor="#475569" />
+                                                <Label Text="{Binding NextBackupDueDate, StringFormat='Next due: {0:dd MMM yyyy}'}" TextColor="#334155" FontAttributes="Bold" />
+                                                <Label Text="{Binding BackupStatusMessage}" TextColor="#9A3412" FontAttributes="Bold" />
                                             </VerticalStackLayout>
                                         </Border>
 
-                                        <Border StrokeThickness="0"
-                                                BackgroundColor="#FFFFFF"
-                                                Padding="12"
-                                                StrokeShape="RoundRectangle 12">
+                                        <Border StrokeThickness="0" BackgroundColor="#FFFFFF" Padding="12" StrokeShape="RoundRectangle 12">
                                             <VerticalStackLayout Spacing="6">
-                                                <Label Text="Audit Trail Review"
-                                                       FontAttributes="Bold"
-                                                       TextColor="#1E293B" />
-
-                                                <Label Text="{Binding LastAuditTrailReviewDate, StringFormat='Last completed: {0:dd MMM yyyy}'}"
-                                                       TextColor="#475569" />
-
-                                                <Label Text="{Binding AuditTrailFrequencyMonths, StringFormat='Frequency: every {0} month(s)'}"
-                                                       TextColor="#475569" />
-
-                                                <Label Text="{Binding NextAuditTrailDueDate, StringFormat='Next due: {0:dd MMM yyyy}'}"
-                                                       TextColor="#334155"
-                                                       FontAttributes="Bold" />
-
-                                                <Label Text="{Binding AuditTrailStatusMessage}"
-                                                       TextColor="#9A3412"
-                                                       FontAttributes="Bold" />
+                                                <Label Text="Audit Trail Review" FontAttributes="Bold" TextColor="#1E293B" />
+                                                <Label Text="{Binding LastAuditTrailReviewDate, StringFormat='Last completed: {0:dd MMM yyyy}'}" TextColor="#475569" />
+                                                <Label Text="{Binding AuditTrailFrequencyMonths, StringFormat='Frequency: every {0} month(s)'}" TextColor="#475569" />
+                                                <Label Text="{Binding NextAuditTrailDueDate, StringFormat='Next due: {0:dd MMM yyyy}'}" TextColor="#334155" FontAttributes="Bold" />
+                                                <Label Text="{Binding AuditTrailStatusMessage}" TextColor="#9A3412" FontAttributes="Bold" />
                                             </VerticalStackLayout>
                                         </Border>
 
