@@ -1,4 +1,6 @@
 <Solution>
-  <Project Path="../CSVGxpInventoryApp.Tests/CSVGxpInventoryApp.Tests.csproj" Id="5e711c43-e689-4572-b1c9-f0dc506d47db" />
+  <Project Path="../CSVGxpInventoryApp.Tests/CSVGxpInventoryApp.Tests.csproj" Id="5e711c43-e689-4572-b1c9-f0dc506d47db">
+    <Build Solution="Debug|*" Project="false" />
+  </Project>
   <Project Path="CSVGxpInventoryApp.csproj" />
 </Solution>
