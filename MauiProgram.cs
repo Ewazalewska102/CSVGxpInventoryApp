@@ -32,6 +32,8 @@ namespace CSVGxpInventoryApp
             // Pages
             builder.Services.AddSingleton<MainPage>();
             builder.Services.AddTransient<AddSystemPage>();
+            builder.Services.AddTransient<EditSystemPage>();
+            builder.Services.AddTransient<ReportPage>();
 
 #if DEBUG
             builder.Logging.AddDebug();

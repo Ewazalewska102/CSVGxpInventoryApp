@@ -3,141 +3,238 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CSVGxpInventoryApp.Views.AddSystemPage"
              Title="Add System"
-             BackgroundColor="#EEF2F7">
+             BackgroundColor="{StaticResource AppBackground}">
 
     <ScrollView>
-        <VerticalStackLayout Padding="24" Spacing="18">
+        <VerticalStackLayout Padding="24" Spacing="20">
 
-            <Label Text="Add System Record"
-                   FontSize="28"
-                   FontAttributes="Bold"
-                   HorizontalOptions="Center"
-                   TextColor="#1E293B" />
+            <!-- HEADER -->
+            <Border StrokeThickness="0"
+                    BackgroundColor="{StaticResource CardBackground}"
+                    Padding="22"
+                    StrokeShape="RoundRectangle 22">
 
-            <Label Text="Enter the computerised system details and compliance schedule."
-                   FontSize="14"
-                   TextColor="#64748B"
-                   HorizontalTextAlignment="Center" />
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Add System Record"
+                           Style="{StaticResource PageTitle}" />
 
+                    <Label Text="Enter computerised system details and define the compliance schedule."
+                           Style="{StaticResource PageSubtitle}" />
+                </VerticalStackLayout>
+
+            </Border>
+
+            <!-- MAIN CARD -->
             <Border StrokeThickness="1"
-                    Stroke="#D8DEE9"
-                    BackgroundColor="#FFFFFF"
-                    StrokeShape="RoundRectangle 18"
-                    Padding="18"
-                    Margin="0,10,0,0">
+                    Stroke="{StaticResource BorderColor}"
+                    BackgroundColor="{StaticResource CardBackground}"
+                    Padding="20"
+                    StrokeShape="RoundRectangle 22">
 
-                <VerticalStackLayout Spacing="18">
+                <VerticalStackLayout Spacing="20">
 
+                    <!-- SYSTEM DETAILS -->
                     <Border StrokeThickness="0"
-                            BackgroundColor="#F8FAFC"
-                            Padding="16"
-                            StrokeShape="RoundRectangle 16">
+                            BackgroundColor="{StaticResource SectionBackground}"
+                            Padding="18"
+                            StrokeShape="RoundRectangle 18">
 
                         <VerticalStackLayout Spacing="14">
 
                             <Label Text="System Details"
-                                   FontSize="18"
-                                   FontAttributes="Bold"
-                                   TextColor="#1E293B" />
+                                   Style="{StaticResource SectionTitle}" />
 
-                            <Label Text="System ID" FontAttributes="Bold" TextColor="#334155" />
-                            <Entry Text="{Binding SystemCode}"
-                                   Placeholder="e.g. LAB-UV-001" />
+                            <Grid ColumnDefinitions="*,*"
+                                  RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+                                  ColumnSpacing="16"
+                                  RowSpacing="14">
 
-                            <Label Text="System Name" FontAttributes="Bold" TextColor="#334155" />
-                            <Entry Text="{Binding SystemName}"
-                                   Placeholder="e.g. Empower, Polarimeter, LabSolutions" />
+                                <VerticalStackLayout Grid.Row="0" Grid.Column="0" Spacing="6">
+                                    <Label Text="System ID" FontAttributes="Bold" TextColor="{StaticResource TextSecondary}" />
+                                    <Entry Text="{Binding SystemCode}" Placeholder="e.g. LAB-UV-001" />
+                                </VerticalStackLayout>
 
-                            <Label Text="Department" FontAttributes="Bold" TextColor="#334155" />
-                            <Picker Title="Select department"
-                                    ItemsSource="{Binding Departments}"
-                                    SelectedItem="{Binding SelectedDepartment}" />
+                                <VerticalStackLayout Grid.Row="0" Grid.Column="1" Spacing="6">
+                                    <Label Text="System Name" FontAttributes="Bold" TextColor="{StaticResource TextSecondary}" />
+                                    <Entry Text="{Binding SystemName}" Placeholder="e.g. Empower, Polarimeter" />
+                                </VerticalStackLayout>
 
-                            <Label Text="System Owner" FontAttributes="Bold" TextColor="#334155" />
-                            <Entry Text="{Binding Owner}"
-                                   Placeholder="e.g. QC Manager" />
+                                <VerticalStackLayout Grid.Row="1" Grid.Column="0" Spacing="6">
+                                    <Label Text="Department" FontAttributes="Bold" TextColor="{StaticResource TextSecondary}" />
+                                    <Picker Title="Select department"
+                                            ItemsSource="{Binding Departments}"
+                                            SelectedItem="{Binding SelectedDepartment}" />
+                                </VerticalStackLayout>
 
-                            <Label Text="Vendor" FontAttributes="Bold" TextColor="#334155" />
-                            <Entry Text="{Binding Vendor}"
-                                   Placeholder="e.g. Waters, Hanleys, Shimadzu" />
+                                <VerticalStackLayout Grid.Row="1" Grid.Column="1" Spacing="6">
+                                    <Label Text="System Owner" FontAttributes="Bold" TextColor="{StaticResource TextSecondary}" />
+                                    <Entry Text="{Binding Owner}" Placeholder="e.g. QC Manager" />
+                                </VerticalStackLayout>
 
-                            <Label Text="Software Version" FontAttributes="Bold" TextColor="#334155" />
-                            <Entry Text="{Binding SoftwareVersion}"
-                                   Placeholder="e.g. v1.0, LabSolutions 6.111" />
+                                <VerticalStackLayout Grid.Row="2" Grid.Column="0" Spacing="6">
+                                    <Label Text="Vendor" FontAttributes="Bold" TextColor="{StaticResource TextSecondary}" />
+                                    <Entry Text="{Binding Vendor}" Placeholder="e.g. Waters, Shimadzu" />
+                                </VerticalStackLayout>
 
-                            <Label Text="GAMP 5 Category" FontAttributes="Bold" TextColor="#334155" />
-                            <Picker Title="Select GAMP 5 category"
-                                    ItemsSource="{Binding GampCategories}"
-                                    SelectedItem="{Binding SelectedGampCategory}" />
+                                <VerticalStackLayout Grid.Row="2" Grid.Column="1" Spacing="6">
+                                    <Label Text="Software Version" FontAttributes="Bold" TextColor="{StaticResource TextSecondary}" />
+                                    <Entry Text="{Binding SoftwareVersion}" Placeholder="e.g. v1.0" />
+                                </VerticalStackLayout>
 
-                            <Label Text="GxP Relevant?" FontAttributes="Bold" TextColor="#334155" />
-                            <Picker Title="Select Yes or No"
-                                    ItemsSource="{Binding GxpOptions}"
-                                    SelectedItem="{Binding SelectedGxpOption}" />
+                                <VerticalStackLayout Grid.Row="3" Grid.Column="0" Spacing="6">
+                                    <Label Text="GAMP 5 Category" FontAttributes="Bold" TextColor="{StaticResource TextSecondary}" />
+                                    <Picker Title="Select GAMP 5 category"
+                                            ItemsSource="{Binding GampCategories}"
+                                            SelectedItem="{Binding SelectedGampCategory}" />
+                                </VerticalStackLayout>
 
-                            <Label Text="Validation Status" FontAttributes="Bold" TextColor="#334155" />
-                            <Picker Title="Select validation status"
-                                    ItemsSource="{Binding ValidationStatuses}"
-                                    SelectedItem="{Binding ValidationStatus}" />
+                                <VerticalStackLayout Grid.Row="3" Grid.Column="1" Spacing="6">
+                                    <Label Text="GxP Relevant?" FontAttributes="Bold" TextColor="{StaticResource TextSecondary}" />
+                                    <Picker Title="Select Yes or No"
+                                            ItemsSource="{Binding GxpOptions}"
+                                            SelectedItem="{Binding SelectedGxpOption}" />
+                                </VerticalStackLayout>
+
+                                <VerticalStackLayout Grid.Row="4" Grid.ColumnSpan="2" Spacing="6">
+                                    <Label Text="Validation Status" FontAttributes="Bold" TextColor="{StaticResource TextSecondary}" />
+                                    <Picker Title="Select validation status"
+                                            ItemsSource="{Binding ValidationStatuses}"
+                                            SelectedItem="{Binding ValidationStatus}" />
+                                </VerticalStackLayout>
+
+                            </Grid>
 
                         </VerticalStackLayout>
                     </Border>
 
+                    <!-- COMPLIANCE SCHEDULE -->
                     <Border StrokeThickness="0"
                             BackgroundColor="#EEF2FF"
-                            Padding="16"
-                            StrokeShape="RoundRectangle 16">
+                            Padding="18"
+                            StrokeShape="RoundRectangle 18">
 
-                        <VerticalStackLayout Spacing="14">
+                        <VerticalStackLayout Spacing="16">
 
                             <Label Text="Compliance Schedule"
-                                   FontSize="18"
+                                   FontSize="20"
                                    FontAttributes="Bold"
                                    TextColor="#3730A3" />
 
-                            <Label Text="Last Periodic Review Date" FontAttributes="Bold" TextColor="#334155" />
-                            <DatePicker Date="{Binding LastReviewDate}" />
+                            <Grid ColumnDefinitions="*,*,*"
+                                  ColumnSpacing="14">
 
-                            <Label Text="Periodic Review Frequency (months)" FontAttributes="Bold" TextColor="#334155" />
-                            <Picker Title="Select frequency"
-                                    ItemsSource="{Binding FrequencyOptions}"
-                                    SelectedItem="{Binding ReviewFrequencyMonths}" />
+                                <!-- PERIODIC REVIEW -->
+                                <Border Grid.Column="0"
+                                        StrokeThickness="0"
+                                        BackgroundColor="{StaticResource CardBackground}"
+                                        Padding="14"
+                                        StrokeShape="RoundRectangle 16">
 
-                            <Label Text="Last Backup Verification Date" FontAttributes="Bold" TextColor="#334155" />
-                            <DatePicker Date="{Binding LastBackupDate}" />
+                                    <VerticalStackLayout Spacing="10">
+                                        <Label Text="Periodic Review"
+                                               FontSize="16"
+                                               FontAttributes="Bold"
+                                               TextColor="{StaticResource TextPrimary}" />
 
-                            <Label Text="Backup Verification Frequency (months)" FontAttributes="Bold" TextColor="#334155" />
-                            <Picker Title="Select frequency"
-                                    ItemsSource="{Binding FrequencyOptions}"
-                                    SelectedItem="{Binding BackupFrequencyMonths}" />
+                                        <Label Text="Last completed date"
+                                               FontAttributes="Bold"
+                                               TextColor="{StaticResource TextSecondary}" />
 
-                            <Label Text="Last Audit Trail Review Date" FontAttributes="Bold" TextColor="#334155" />
-                            <DatePicker Date="{Binding LastAuditTrailReviewDate}" />
+                                        <DatePicker Date="{Binding LastReviewDate}" />
 
-                            <Label Text="Audit Trail Review Frequency (months)" FontAttributes="Bold" TextColor="#334155" />
-                            <Picker Title="Select frequency"
-                                    ItemsSource="{Binding FrequencyOptions}"
-                                    SelectedItem="{Binding AuditTrailFrequencyMonths}" />
+                                        <Label Text="Frequency (months)"
+                                               FontAttributes="Bold"
+                                               TextColor="{StaticResource TextSecondary}" />
+
+                                        <Picker Title="Select frequency"
+                                                ItemsSource="{Binding FrequencyOptions}"
+                                                SelectedItem="{Binding ReviewFrequencyMonths}" />
+                                    </VerticalStackLayout>
+
+                                </Border>
+
+                                <!-- BACKUP VERIFICATION -->
+                                <Border Grid.Column="1"
+                                        StrokeThickness="0"
+                                        BackgroundColor="{StaticResource CardBackground}"
+                                        Padding="14"
+                                        StrokeShape="RoundRectangle 16">
+
+                                    <VerticalStackLayout Spacing="10">
+                                        <Label Text="Backup Verification"
+                                               FontSize="16"
+                                               FontAttributes="Bold"
+                                               TextColor="{StaticResource TextPrimary}" />
+
+                                        <Label Text="Last completed date"
+                                               FontAttributes="Bold"
+                                               TextColor="{StaticResource TextSecondary}" />
+
+                                        <DatePicker Date="{Binding LastBackupDate}" />
+
+                                        <Label Text="Frequency (months)"
+                                               FontAttributes="Bold"
+                                               TextColor="{StaticResource TextSecondary}" />
+
+                                        <Picker Title="Select frequency"
+                                                ItemsSource="{Binding FrequencyOptions}"
+                                                SelectedItem="{Binding BackupFrequencyMonths}" />
+                                    </VerticalStackLayout>
+
+                                </Border>
+
+                                <!-- AUDIT TRAIL REVIEW -->
+                                <Border Grid.Column="2"
+                                        StrokeThickness="0"
+                                        BackgroundColor="{StaticResource CardBackground}"
+                                        Padding="14"
+                                        StrokeShape="RoundRectangle 16">
+
+                                    <VerticalStackLayout Spacing="10">
+                                        <Label Text="Audit Trail Review"
+                                               FontSize="16"
+                                               FontAttributes="Bold"
+                                               TextColor="{StaticResource TextPrimary}" />
+
+                                        <Label Text="Last completed date"
+                                               FontAttributes="Bold"
+                                               TextColor="{StaticResource TextSecondary}" />
+
+                                        <DatePicker Date="{Binding LastAuditTrailReviewDate}" />
+
+                                        <Label Text="Frequency (months)"
+                                               FontAttributes="Bold"
+                                               TextColor="{StaticResource TextSecondary}" />
+
+                                        <Picker Title="Select frequency"
+                                                ItemsSource="{Binding FrequencyOptions}"
+                                                SelectedItem="{Binding AuditTrailFrequencyMonths}" />
+                                    </VerticalStackLayout>
+
+                                </Border>
+
+                            </Grid>
 
                         </VerticalStackLayout>
                     </Border>
 
-                    <Button Text="Save System"
-                            FontAttributes="Bold"
-                            HeightRequest="48"
-                            BackgroundColor="#A78BFA"
-                            TextColor="White"
-                            CornerRadius="14"
-                            Clicked="OnSaveSystemClicked" />
+                    <!-- BUTTONS -->
+                    <Grid ColumnDefinitions="*,*"
+                          ColumnSpacing="14">
 
-                    <Button Text="Back to Inventory"
-                            HeightRequest="44"
-                            BackgroundColor="#CBD5E1"
-                            TextColor="#1E293B"
-                            CornerRadius="14"
-                            Clicked="OnBackClicked" />
+                        <Button Grid.Column="0"
+                                Text="Save System"
+                                Clicked="OnSaveSystemClicked" />
+
+                        <Button Grid.Column="1"
+                                Text="Back to Inventory"
+                                Style="{StaticResource NeutralButton}"
+                                Clicked="OnBackClicked" />
+
+                    </Grid>
 
                 </VerticalStackLayout>
+
             </Border>
 
         </VerticalStackLayout>

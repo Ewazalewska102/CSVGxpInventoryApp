@@ -3,216 +3,237 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CSVGxpInventoryApp.MainPage"
              Title="System Inventory"
-             BackgroundColor="#EEF2F7">
+             BackgroundColor="{StaticResource AppBackground}">
 
     <ScrollView>
-        <VerticalStackLayout Padding="22" Spacing="18">
+        <VerticalStackLayout Padding="24" Spacing="20">
 
-            <Label Text="GxP System Inventory"
-                   FontSize="28"
-                   FontAttributes="Bold"
-                   HorizontalOptions="Center"
-                   TextColor="#1E293B" />
+            <!-- HEADER -->
+            <Border StrokeThickness="0"
+                    BackgroundColor="{StaticResource CardBackground}"
+                    Padding="22"
+                    StrokeShape="RoundRectangle 22">
 
-            <Label Text="Computerised system records and compliance classification"
-                   FontSize="14"
-                   HorizontalOptions="Center"
-                   TextColor="#64748B" />
+                <VerticalStackLayout Spacing="8">
 
+                    <Label Text="GxP System Inventory"
+                           Style="{StaticResource PageTitle}" />
+
+                    <Label Text="Computerised system records, validation status and compliance reminders"
+                           Style="{StaticResource PageSubtitle}" />
+
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- DASHBOARD -->
             <Label Text="Dashboard Overview"
-                   FontSize="20"
-                   FontAttributes="Bold"
-                   TextColor="#1E293B"
-                   Margin="0,10,0,0" />
+                   Style="{StaticResource SectionTitle}" />
 
             <Grid ColumnDefinitions="*,*"
                   RowDefinitions="Auto,Auto,Auto,Auto"
-                  ColumnSpacing="12"
-                  RowSpacing="12">
+                  ColumnSpacing="14"
+                  RowSpacing="14">
 
-                <Border Grid.Row="0" Grid.Column="0" StrokeThickness="0" BackgroundColor="#DBEAFE" Padding="16" StrokeShape="RoundRectangle 18">
+                <Border Grid.Row="0" Grid.Column="0" StrokeThickness="0" BackgroundColor="#DBEAFE">
                     <VerticalStackLayout Spacing="6">
-                        <Label Text="Total Systems" FontSize="14" FontAttributes="Bold" TextColor="#1E3A8A" />
-                        <Label Text="{Binding TotalSystems}" FontSize="30" FontAttributes="Bold" TextColor="#1E3A8A" />
+                        <Label Text="Total Systems" FontAttributes="Bold" TextColor="#1E40AF" />
+                        <Label Text="{Binding TotalSystems}" FontSize="30" FontAttributes="Bold" TextColor="#1E40AF" />
                     </VerticalStackLayout>
                 </Border>
 
-                <Border Grid.Row="0" Grid.Column="1" StrokeThickness="0" BackgroundColor="#D1FAE5" Padding="16" StrokeShape="RoundRectangle 18">
+                <Border Grid.Row="0" Grid.Column="1" StrokeThickness="0" BackgroundColor="#D1FAE5">
                     <VerticalStackLayout Spacing="6">
-                        <Label Text="GxP Relevant" FontSize="14" FontAttributes="Bold" TextColor="#065F46" />
-                        <Label Text="{Binding GxpRelevantSystems}" FontSize="30" FontAttributes="Bold" TextColor="#065F46" />
+                        <Label Text="GxP Relevant" FontAttributes="Bold" TextColor="#047857" />
+                        <Label Text="{Binding GxpRelevantSystems}" FontSize="30" FontAttributes="Bold" TextColor="#047857" />
                     </VerticalStackLayout>
                 </Border>
 
-                <Border Grid.Row="1" Grid.Column="0" StrokeThickness="0" BackgroundColor="#EDE9FE" Padding="16" StrokeShape="RoundRectangle 18">
+                <Border Grid.Row="1" Grid.Column="0" StrokeThickness="0" BackgroundColor="#EDE9FE">
                     <VerticalStackLayout Spacing="6">
-                        <Label Text="Validated" FontSize="14" FontAttributes="Bold" TextColor="#5B21B6" />
+                        <Label Text="Validated" FontAttributes="Bold" TextColor="#5B21B6" />
                         <Label Text="{Binding ValidatedSystems}" FontSize="30" FontAttributes="Bold" TextColor="#5B21B6" />
                     </VerticalStackLayout>
                 </Border>
 
-                <Border Grid.Row="1" Grid.Column="1" StrokeThickness="0" BackgroundColor="#FEF3C7" Padding="16" StrokeShape="RoundRectangle 18">
+                <Border Grid.Row="1" Grid.Column="1" StrokeThickness="0" BackgroundColor="#FEF3C7">
                     <VerticalStackLayout Spacing="6">
-                        <Label Text="In Progress" FontSize="14" FontAttributes="Bold" TextColor="#92400E" />
+                        <Label Text="In Progress" FontAttributes="Bold" TextColor="#92400E" />
                         <Label Text="{Binding InProgressSystems}" FontSize="30" FontAttributes="Bold" TextColor="#92400E" />
                     </VerticalStackLayout>
                 </Border>
 
-                <Border Grid.Row="2" Grid.Column="0" StrokeThickness="0" BackgroundColor="#FCE7F3" Padding="16" StrokeShape="RoundRectangle 18">
+                <Border Grid.Row="2" Grid.Column="0" StrokeThickness="0" BackgroundColor="#FCE7F3">
                     <VerticalStackLayout Spacing="6">
-                        <Label Text="Not Validated" FontSize="14" FontAttributes="Bold" TextColor="#9D174D" />
+                        <Label Text="Not Validated" FontAttributes="Bold" TextColor="#9D174D" />
                         <Label Text="{Binding NotValidatedSystems}" FontSize="30" FontAttributes="Bold" TextColor="#9D174D" />
                     </VerticalStackLayout>
                 </Border>
 
-                <Border Grid.Row="2" Grid.Column="1" StrokeThickness="0" BackgroundColor="#E5E7EB" Padding="16" StrokeShape="RoundRectangle 18">
+                <Border Grid.Row="2" Grid.Column="1" StrokeThickness="0" BackgroundColor="#E5E7EB">
                     <VerticalStackLayout Spacing="6">
-                        <Label Text="Obsolete" FontSize="14" FontAttributes="Bold" TextColor="#374151" />
+                        <Label Text="Obsolete" FontAttributes="Bold" TextColor="#374151" />
                         <Label Text="{Binding ObsoleteSystemsCount}" FontSize="30" FontAttributes="Bold" TextColor="#374151" />
                     </VerticalStackLayout>
                 </Border>
 
-                <Border Grid.Row="3" Grid.Column="0" StrokeThickness="0" BackgroundColor="#FFEDD5" Padding="16" StrokeShape="RoundRectangle 18">
+                <Border Grid.Row="3" Grid.Column="0" StrokeThickness="0" BackgroundColor="#FFEDD5">
                     <VerticalStackLayout Spacing="6">
-                        <Label Text="Upcoming Tasks" FontSize="14" FontAttributes="Bold" TextColor="#9A3412" />
+                        <Label Text="Upcoming Tasks" FontAttributes="Bold" TextColor="#9A3412" />
                         <Label Text="{Binding UpcomingComplianceTasks}" FontSize="30" FontAttributes="Bold" TextColor="#9A3412" />
                     </VerticalStackLayout>
                 </Border>
 
-                <Border Grid.Row="3" Grid.Column="1" StrokeThickness="0" BackgroundColor="#FEE2E2" Padding="16" StrokeShape="RoundRectangle 18">
+                <Border Grid.Row="3" Grid.Column="1" StrokeThickness="0" BackgroundColor="#FEE2E2">
                     <VerticalStackLayout Spacing="6">
-                        <Label Text="Overdue Tasks" FontSize="14" FontAttributes="Bold" TextColor="#991B1B" />
+                        <Label Text="Overdue Tasks" FontAttributes="Bold" TextColor="#991B1B" />
                         <Label Text="{Binding OverdueComplianceTasks}" FontSize="30" FontAttributes="Bold" TextColor="#991B1B" />
                     </VerticalStackLayout>
                 </Border>
 
             </Grid>
 
-            <Button Text="Add New System"
-                    FontAttributes="Bold"
-                    HeightRequest="50"
-                    BackgroundColor="#A78BFA"
-                    TextColor="White"
-                    CornerRadius="14"
-                    Clicked="OnAddSystemClicked" />
+            <!-- ACTION BUTTONS -->
+            <Grid ColumnDefinitions="*,*"
+                  ColumnSpacing="14">
 
-            <Button Text="View Report"
-                    FontAttributes="Bold"
-                    HeightRequest="50"
-                    BackgroundColor="#34D399"
-                    TextColor="White"
-                    CornerRadius="14"
-                    Clicked="OnViewReportClicked" />
+                <Button Grid.Column="0"
+                        Text="Add New System"
+                        Clicked="OnAddSystemClicked" />
 
+                <Button Grid.Column="1"
+                        Text="View Report"
+                        Style="{StaticResource SecondaryButton}"
+                        Clicked="OnViewReportClicked" />
+
+            </Grid>
+
+            <!-- SEARCH AND FILTER -->
             <Border StrokeThickness="0"
-                    BackgroundColor="#FFFFFF"
-                    Padding="16"
-                    StrokeShape="RoundRectangle 18">
+                    BackgroundColor="{StaticResource CardBackground}"
+                    Padding="18"
+                    StrokeShape="RoundRectangle 20">
 
-                <VerticalStackLayout Spacing="12">
+                <VerticalStackLayout Spacing="14">
 
                     <Label Text="Search and Filter"
-                           FontSize="16"
-                           FontAttributes="Bold"
-                           TextColor="#1E293B" />
+                           Style="{StaticResource CardTitle}" />
 
-                    <Entry Placeholder="Search by system name"
-                           Text="{Binding SearchText}"
-                           BackgroundColor="#F8FAFC"
-                           TextColor="#111827"
-                           PlaceholderColor="#94A3B8" />
+                    <Grid ColumnDefinitions="*,*,*"
+                          ColumnSpacing="12">
 
-                    <Picker Title="Filter by Department"
-                            ItemsSource="{Binding FilterDepartments}"
-                            SelectedItem="{Binding SelectedFilterDepartment}"
-                            BackgroundColor="#F8FAFC"
-                            TextColor="#111827" />
+                        <VerticalStackLayout Grid.Column="0" Spacing="6">
+                            <Label Text="System Name"
+                                   Style="{StaticResource MutedText}" />
 
-                    <Picker Title="Filter by Validation Status"
-                            ItemsSource="{Binding FilterValidationStatuses}"
-                            SelectedItem="{Binding SelectedFilterValidationStatus}"
-                            BackgroundColor="#F8FAFC"
-                            TextColor="#111827" />
+                            <Entry Placeholder="Search by system name"
+                                   Text="{Binding SearchText}" />
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Grid.Column="1" Spacing="6">
+                            <Label Text="Department"
+                                   Style="{StaticResource MutedText}" />
+
+                            <Picker Title="Select department"
+                                    ItemsSource="{Binding FilterDepartments}"
+                                    SelectedItem="{Binding SelectedFilterDepartment}" />
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Grid.Column="2" Spacing="6">
+                            <Label Text="Validation Status"
+                                   Style="{StaticResource MutedText}" />
+
+                            <Picker Title="Select status"
+                                    ItemsSource="{Binding FilterValidationStatuses}"
+                                    SelectedItem="{Binding SelectedFilterValidationStatus}" />
+                        </VerticalStackLayout>
+
+                    </Grid>
 
                     <Grid ColumnDefinitions="*,Auto"
-                          ColumnSpacing="12">
+                          ColumnSpacing="12"
+                          Margin="0,4,0,0">
 
                         <Label Grid.Column="0"
                                Text="{Binding FilteredSystemsCount, StringFormat='Displayed records: {0}'}"
-                               TextColor="#475569"
+                               TextColor="{StaticResource TextSecondary}"
                                VerticalOptions="Center" />
 
                         <Button Grid.Column="1"
                                 Text="Clear Filters"
                                 Command="{Binding ClearFiltersCommand}"
-                                BackgroundColor="#CBD5E1"
-                                TextColor="#1E293B"
-                                FontAttributes="Bold"
-                                CornerRadius="12" />
+                                Style="{StaticResource NeutralButton}" />
 
                     </Grid>
 
                 </VerticalStackLayout>
             </Border>
 
+            <!-- INVENTORY LIST -->
             <Label Text="System Inventory List"
-                   FontSize="20"
-                   FontAttributes="Bold"
-                   TextColor="#1E293B"
-                   Margin="0,8,0,0" />
+                   Style="{StaticResource SectionTitle}" />
 
             <CollectionView ItemsSource="{Binding Systems}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
 
-                        <Border StrokeThickness="1"
-                                Stroke="#D8DEE9"
+                        <Border Stroke="{StaticResource BorderColor}"
+                                StrokeThickness="1"
+                                BackgroundColor="{StaticResource CardBackground}"
                                 Padding="18"
-                                Margin="0,8"
-                                BackgroundColor="#FFFFFF"
-                                StrokeShape="RoundRectangle 18">
+                                Margin="0,6"
+                                StrokeShape="RoundRectangle 20">
 
-                            <VerticalStackLayout Spacing="14"
-                                                 BackgroundColor="#F8FAFC"
-                                                 Padding="16">
+                            <VerticalStackLayout Spacing="16">
 
-                                <Label Text="{Binding SystemName}"
-                                       FontSize="21"
-                                       FontAttributes="Bold"
-                                       TextColor="#111827" />
+                                <VerticalStackLayout Spacing="4">
+                                    <Label Text="{Binding SystemName}"
+                                           FontSize="21"
+                                           FontAttributes="Bold"
+                                           TextColor="{StaticResource TextPrimary}" />
 
-                                <Grid ColumnDefinitions="160,*"
-                                      RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto"
-                                      RowSpacing="8"
-                                      ColumnSpacing="10">
+                                    <Label Text="{Binding Department}"
+                                           TextColor="{StaticResource TextSecondary}"
+                                           FontSize="13" />
+                                </VerticalStackLayout>
 
-                                    <Label Grid.Row="0" Grid.Column="0" Text="System ID:" FontAttributes="Bold" TextColor="#475569" />
-                                    <Label Grid.Row="0" Grid.Column="1" Text="{Binding SystemCode}" TextColor="#334155" />
+                                <Border StrokeThickness="0"
+                                        BackgroundColor="{StaticResource SectionBackground}"
+                                        Padding="14"
+                                        StrokeShape="RoundRectangle 14">
 
-                                    <Label Grid.Row="1" Grid.Column="0" Text="System Owner:" FontAttributes="Bold" TextColor="#475569" />
-                                    <Label Grid.Row="1" Grid.Column="1" Text="{Binding Owner}" TextColor="#334155" />
+                                    <Grid ColumnDefinitions="170,*"
+                                          RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+                                          RowSpacing="8"
+                                          ColumnSpacing="10">
 
-                                    <Label Grid.Row="2" Grid.Column="0" Text="Vendor:" FontAttributes="Bold" TextColor="#475569" />
-                                    <Label Grid.Row="2" Grid.Column="1" Text="{Binding Vendor}" TextColor="#334155" />
+                                        <Label Grid.Row="0" Grid.Column="0" Text="System ID:" FontAttributes="Bold" TextColor="{StaticResource TextSecondary}" />
+                                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding SystemCode}" TextColor="{StaticResource TextPrimary}" />
 
-                                    <Label Grid.Row="3" Grid.Column="0" Text="Software Version:" FontAttributes="Bold" TextColor="#475569" />
-                                    <Label Grid.Row="3" Grid.Column="1" Text="{Binding SoftwareVersion}" TextColor="#334155" />
+                                        <Label Grid.Row="1" Grid.Column="0" Text="System Owner:" FontAttributes="Bold" TextColor="{StaticResource TextSecondary}" />
+                                        <Label Grid.Row="1" Grid.Column="1" Text="{Binding Owner}" TextColor="{StaticResource TextPrimary}" />
 
-                                    <Label Grid.Row="4" Grid.Column="0" Text="GAMP 5 Category:" FontAttributes="Bold" TextColor="#475569" />
-                                    <Label Grid.Row="4" Grid.Column="1" Text="{Binding GampCategory}" TextColor="#6D28D9" FontAttributes="Bold" />
+                                        <Label Grid.Row="2" Grid.Column="0" Text="Vendor:" FontAttributes="Bold" TextColor="{StaticResource TextSecondary}" />
+                                        <Label Grid.Row="2" Grid.Column="1" Text="{Binding Vendor}" TextColor="{StaticResource TextPrimary}" />
 
-                                    <Label Grid.Row="5" Grid.Column="0" Text="GxP Relevant:" FontAttributes="Bold" TextColor="#475569" />
-                                    <Label Grid.Row="5" Grid.Column="1" Text="{Binding IsGxpRelevant}" TextColor="#047857" FontAttributes="Bold" />
+                                        <Label Grid.Row="3" Grid.Column="0" Text="Software Version:" FontAttributes="Bold" TextColor="{StaticResource TextSecondary}" />
+                                        <Label Grid.Row="3" Grid.Column="1" Text="{Binding SoftwareVersion}" TextColor="{StaticResource TextPrimary}" />
 
-                                    <Label Grid.Row="6" Grid.Column="0" Text="Validation Status:" FontAttributes="Bold" TextColor="#475569" />
-                                    <Label Grid.Row="6" Grid.Column="1" Text="{Binding ValidationStatus}" TextColor="#2563EB" FontAttributes="Bold" />
+                                        <Label Grid.Row="4" Grid.Column="0" Text="GAMP 5 Category:" FontAttributes="Bold" TextColor="{StaticResource TextSecondary}" />
+                                        <Label Grid.Row="4" Grid.Column="1" Text="{Binding GampCategory}" TextColor="#5B21B6" FontAttributes="Bold" />
 
-                                </Grid>
+                                        <Label Grid.Row="5" Grid.Column="0" Text="GxP Relevant:" FontAttributes="Bold" TextColor="{StaticResource TextSecondary}" />
+                                        <Label Grid.Row="5" Grid.Column="1" Text="{Binding IsGxpRelevant}" TextColor="#047857" FontAttributes="Bold" />
+
+                                        <Label Grid.Row="6" Grid.Column="0" Text="Validation Status:" FontAttributes="Bold" TextColor="{StaticResource TextSecondary}" />
+                                        <Label Grid.Row="6" Grid.Column="1" Text="{Binding ValidationStatus}" TextColor="#2563EB" FontAttributes="Bold" />
+
+                                    </Grid>
+                                </Border>
 
                                 <Border StrokeThickness="0"
                                         BackgroundColor="#EEF2FF"
                                         Padding="14"
-                                        StrokeShape="RoundRectangle 14">
+                                        StrokeShape="RoundRectangle 16">
 
                                     <VerticalStackLayout Spacing="12">
 
@@ -221,54 +242,62 @@
                                                FontAttributes="Bold"
                                                TextColor="#3730A3" />
 
-                                        <Border StrokeThickness="0" BackgroundColor="#FFFFFF" Padding="12" StrokeShape="RoundRectangle 12">
-                                            <VerticalStackLayout Spacing="6">
-                                                <Label Text="Periodic Review" FontAttributes="Bold" TextColor="#1E293B" />
-                                                <Label Text="{Binding LastReviewDate, StringFormat='Last completed: {0:dd MMM yyyy}'}" TextColor="#475569" />
-                                                <Label Text="{Binding ReviewFrequencyMonths, StringFormat='Frequency: every {0} month(s)'}" TextColor="#475569" />
-                                                <Label Text="{Binding NextReviewDueDate, StringFormat='Next due: {0:dd MMM yyyy}'}" TextColor="#334155" FontAttributes="Bold" />
-                                                <Label Text="{Binding ReviewStatusMessage}" TextColor="#9A3412" FontAttributes="Bold" />
-                                            </VerticalStackLayout>
-                                        </Border>
+                                        <Grid ColumnDefinitions="*,*,*"
+                                              ColumnSpacing="12">
 
-                                        <Border StrokeThickness="0" BackgroundColor="#FFFFFF" Padding="12" StrokeShape="RoundRectangle 12">
-                                            <VerticalStackLayout Spacing="6">
-                                                <Label Text="Backup Verification" FontAttributes="Bold" TextColor="#1E293B" />
-                                                <Label Text="{Binding LastBackupDate, StringFormat='Last completed: {0:dd MMM yyyy}'}" TextColor="#475569" />
-                                                <Label Text="{Binding BackupFrequencyMonths, StringFormat='Frequency: every {0} month(s)'}" TextColor="#475569" />
-                                                <Label Text="{Binding NextBackupDueDate, StringFormat='Next due: {0:dd MMM yyyy}'}" TextColor="#334155" FontAttributes="Bold" />
-                                                <Label Text="{Binding BackupStatusMessage}" TextColor="#9A3412" FontAttributes="Bold" />
-                                            </VerticalStackLayout>
-                                        </Border>
+                                            <Border Grid.Column="0" StrokeThickness="0" BackgroundColor="#FFFFFF" Padding="12" StrokeShape="RoundRectangle 14">
+                                                <VerticalStackLayout Spacing="6">
+                                                    <Label Text="Periodic Review" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
+                                                    <Label Text="{Binding LastReviewDate, StringFormat='Last: {0:dd MMM yyyy}'}" TextColor="{StaticResource TextSecondary}" />
+                                                    <Label Text="{Binding ReviewFrequencyMonths, StringFormat='Every {0} month(s)'}" TextColor="{StaticResource TextSecondary}" />
+                                                    <Label Text="{Binding NextReviewDueDate, StringFormat='Due: {0:dd MMM yyyy}'}" TextColor="{StaticResource TextPrimary}" FontAttributes="Bold" />
+                                                    <Label Text="{Binding ReviewStatusMessage}" TextColor="#9A3412" FontAttributes="Bold" />
+                                                </VerticalStackLayout>
+                                            </Border>
 
-                                        <Border StrokeThickness="0" BackgroundColor="#FFFFFF" Padding="12" StrokeShape="RoundRectangle 12">
-                                            <VerticalStackLayout Spacing="6">
-                                                <Label Text="Audit Trail Review" FontAttributes="Bold" TextColor="#1E293B" />
-                                                <Label Text="{Binding LastAuditTrailReviewDate, StringFormat='Last completed: {0:dd MMM yyyy}'}" TextColor="#475569" />
-                                                <Label Text="{Binding AuditTrailFrequencyMonths, StringFormat='Frequency: every {0} month(s)'}" TextColor="#475569" />
-                                                <Label Text="{Binding NextAuditTrailDueDate, StringFormat='Next due: {0:dd MMM yyyy}'}" TextColor="#334155" FontAttributes="Bold" />
-                                                <Label Text="{Binding AuditTrailStatusMessage}" TextColor="#9A3412" FontAttributes="Bold" />
-                                            </VerticalStackLayout>
-                                        </Border>
+                                            <Border Grid.Column="1" StrokeThickness="0" BackgroundColor="#FFFFFF" Padding="12" StrokeShape="RoundRectangle 14">
+                                                <VerticalStackLayout Spacing="6">
+                                                    <Label Text="Backup Verification" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
+                                                    <Label Text="{Binding LastBackupDate, StringFormat='Last: {0:dd MMM yyyy}'}" TextColor="{StaticResource TextSecondary}" />
+                                                    <Label Text="{Binding BackupFrequencyMonths, StringFormat='Every {0} month(s)'}" TextColor="{StaticResource TextSecondary}" />
+                                                    <Label Text="{Binding NextBackupDueDate, StringFormat='Due: {0:dd MMM yyyy}'}" TextColor="{StaticResource TextPrimary}" FontAttributes="Bold" />
+                                                    <Label Text="{Binding BackupStatusMessage}" TextColor="#9A3412" FontAttributes="Bold" />
+                                                </VerticalStackLayout>
+                                            </Border>
+
+                                            <Border Grid.Column="2" StrokeThickness="0" BackgroundColor="#FFFFFF" Padding="12" StrokeShape="RoundRectangle 14">
+                                                <VerticalStackLayout Spacing="6">
+                                                    <Label Text="Audit Trail Review" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
+                                                    <Label Text="{Binding LastAuditTrailReviewDate, StringFormat='Last: {0:dd MMM yyyy}'}" TextColor="{StaticResource TextSecondary}" />
+                                                    <Label Text="{Binding AuditTrailFrequencyMonths, StringFormat='Every {0} month(s)'}" TextColor="{StaticResource TextSecondary}" />
+                                                    <Label Text="{Binding NextAuditTrailDueDate, StringFormat='Due: {0:dd MMM yyyy}'}" TextColor="{StaticResource TextPrimary}" FontAttributes="Bold" />
+                                                    <Label Text="{Binding AuditTrailStatusMessage}" TextColor="#9A3412" FontAttributes="Bold" />
+                                                </VerticalStackLayout>
+                                            </Border>
+
+                                        </Grid>
 
                                     </VerticalStackLayout>
                                 </Border>
 
-                                <Button Text="Mark as Obsolete"
-                                        BackgroundColor="#FCA5A5"
-                                        TextColor="#7F1D1D"
-                                        FontAttributes="Bold"
-                                        CornerRadius="12"
-                                        HeightRequest="44"
-                                        Clicked="OnMarkAsObsoleteClicked" />
+                                <Grid ColumnDefinitions="*,*"
+                                      ColumnSpacing="12">
 
-                                <Button Text="Edit"
-                                        BackgroundColor="#93C5FD"
-                                        TextColor="#1E3A8A"
-                                        FontAttributes="Bold"
-                                        CornerRadius="12"
-                                        HeightRequest="44"
-                                        Clicked="OnEditClicked" />
+                                    <Button Grid.Column="0"
+                                            Text="Edit"
+                                            BackgroundColor="#DBEAFE"
+                                            TextColor="#1E40AF"
+                                            FontAttributes="Bold"
+                                            CornerRadius="12"
+                                            HeightRequest="44"
+                                            Clicked="OnEditClicked" />
+
+                                    <Button Grid.Column="1"
+                                            Text="Mark as Obsolete"
+                                            Style="{StaticResource DangerButton}"
+                                            Clicked="OnMarkAsObsoleteClicked" />
+
+                                </Grid>
 
                             </VerticalStackLayout>
 

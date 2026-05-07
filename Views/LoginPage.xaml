@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CSVGxpInventoryApp.Views.LoginPage"
+             Title="Login"
+             BackgroundColor="{StaticResource AppBackground}">
+
+    <Grid Padding="32"
+          RowDefinitions="*,Auto,*">
+
+        <Border Grid.Row="1"
+                BackgroundColor="{StaticResource CardBackground}"
+                Padding="32"
+                StrokeThickness="0"
+                StrokeShape="RoundRectangle 28"
+                MaximumWidthRequest="460">
+
+            <VerticalStackLayout Spacing="20">
+
+                <!-- LOGO -->
+                <Border WidthRequest="86"
+                        HeightRequest="86"
+                        StrokeThickness="0"
+                        BackgroundColor="#DBEAFE"
+                        StrokeShape="RoundRectangle 43"
+                        HorizontalOptions="Center"
+                        Padding="0">
+
+                    <Label Text="GxP"
+                           FontSize="26"
+                           FontAttributes="Bold"
+                           TextColor="#1E40AF"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" />
+
+                </Border>
+
+                <!-- TITLE -->
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="GxP System Inventory"
+                           Style="{StaticResource PageTitle}" />
+
+                    <Label Text="Compliance Reminder Application"
+                           Style="{StaticResource PageSubtitle}" />
+                </VerticalStackLayout>
+
+                <!-- LOGIN FORM -->
+                <VerticalStackLayout Spacing="12"
+                                     Margin="0,10,0,0">
+
+                    <Label Text="Username"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource TextSecondary}" />
+
+                    <Entry x:Name="UsernameEntry"
+                           Placeholder="Enter username" />
+
+                    <Label Text="Password"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource TextSecondary}" />
+
+                    <Entry x:Name="PasswordEntry"
+                           Placeholder="Enter password"
+                           IsPassword="True" />
+
+                </VerticalStackLayout>
+
+                <Button Text="Log In"
+                        Margin="0,6,0,0"
+                        Clicked="OnLoginClicked" />
+
+                <Border StrokeThickness="0"
+                        BackgroundColor="{StaticResource SectionBackground}"
+                        Padding="12"
+                        StrokeShape="RoundRectangle 14">
+
+                    <Label Text="Demo login: admin / admin123"
+                           FontSize="12"
+                           HorizontalOptions="Center"
+                           TextColor="{StaticResource TextSecondary}" />
+
+                </Border>
+
+            </VerticalStackLayout>
+
+        </Border>
+
+    </Grid>
+
+</ContentPage>
