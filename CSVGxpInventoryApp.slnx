@@ -1,4 +1,6 @@
 <Solution>
   <Project Path="CSVGxpInventoryApp.csproj" />
-  <Project Path="CSVGxpInventoryApp.Tests/CSVGxpInventoryApp.Tests.csproj" />
+  <Project Path="CSVGxpInventoryApp.Tests/CSVGxpInventoryApp.Tests.csproj">
+    <Build Solution="Debug|*" Project="false" />
+  </Project>
 </Solution>
